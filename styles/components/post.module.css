@@ -1,0 +1,40 @@
+.post {
+    width:23%;
+    float: left;
+    padding: 1%;
+    font-family: 'Inter';
+    font-size: 14px;
+  }
+  .postImage {
+    width: 100%;
+    height: 300px;
+    object-fit: fill;
+  }
+  .upvote {
+    width: 12px;
+    height: 12px;
+  }
+  .voteNumber {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 15px;
+  }
+  .downvote {
+    transform: rotate(180deg);
+    width: 12px;
+    height: 12px;
+  }
+  .profileLink {
+    padding-top: 100px;
+    text-decoration: none;
+    color: black;
+  }
+  .profileLink:hover {
+    color: blue;
+  }
+  .postDescription {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+  }
