@@ -19,16 +19,19 @@ app.use('/', express.static(path.join(__dirname, '/public')))
 // Routes
 app.use('/api/account', require('./routes/account.routes'))
 
+// app.all('*', (req, res) => {
+//     res.status(404)
+//     if (req.accepts('js')) {
+//         res.sendFile(path.join(__dirname, 'app', '404.js'))
+//     } else if (req.accepts('json')) {
+//         res.json({ message: "404 Not Found" })
+//     } else {
+//         res.type('txt').send('404 Not Found')
+//     }
+// })
 app.all('*', (req, res) => {
-    res.status(404)
-    if (req.accepts('js')) {
-        res.sendFile(path.join(__dirname, 'app', '404.js'))
-    } else if (req.accepts('json')) {
-        res.json({ message: "404 Not Found" })
-    } else {
-        res.type('txt').send('404 Not Found')
-    }
-})
+    res.status(404).send('404 Not Found');
+});
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
