@@ -13,6 +13,7 @@
   .upvote {
     width: 12px;
     height: 12px;
+    display: inline-block;
   }
   .voteNumber {
     display: inline-block;
@@ -23,6 +24,7 @@
     transform: rotate(180deg);
     width: 12px;
     height: 12px;
+    display: inline-block;
   }
   .profileLink {
     padding-top: 100px;
