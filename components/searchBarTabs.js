@@ -1,11 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
-import PostExample1 from '/components/postExample1.js';
-import PostExample2 from '/components/postExample2.js';
-import PostExample3 from '/components/postExample3.js';
 import styles from '/styles/components/tabs.module.css';
 
-function TabComponent() {
+function SearchBarTabs() {
     useEffect(() => {
       // By default, open the first tab
       document.getElementsByClassName(styles.tablinks)[0].click();
@@ -33,36 +30,32 @@ function TabComponent() {
     return (
         <main>
             <div className={styles.tab}>
-            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'forYou')}>
-            For You
+            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'outfits')}>
+                Outfits
             </button>
-            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'following')}>
-            Following
+            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'people')}>
+                People
             </button>
             <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag')}>
-            Hashtag
+                Hashtag
             </button>
         </div>
         <hr className={styles.horizontalLine}/>
 
-        <div id="forYou" className={`${"tabcontent"}`}>
-          <PostExample1 />
-          <PostExample3 />
-          <PostExample2 />
+        <div id="outfits" className={`${"tabcontent"}`}>
+            <b>Search Keyword Ranking 1</b>
         </div>
 
-{/* Following Tab */}
-      <div id="following" className={`${"tabcontent"}`}>
-        <PostExample2 />
-      </div>
+        <div id="people" className={`${"tabcontent"}`}>
+            <b>Search Keyword Ranking 2</b>
+        </div>
 
-{/* Hashtag Tab */}
-      <div id="hashtag" className={`${"tabcontent"}`}>
-        <PostExample3 />
-      </div>
+        <div id="hashtag" className={`${"tabcontent"}`}>
+            <b>Search Keyword Ranking 3</b>
+        </div>
 
       </main>
     )
 }
 
-export default TabComponent;
+export default SearchBarTabs;

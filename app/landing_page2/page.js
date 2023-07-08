@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import TabComponent from '/components/tabs.js';
+import LandingPageTabs from '/components/landingPageTabs.js';
 import Dropdown from '/components/dropdown.js';
 import Overlay1 from '/components/overlay1.js';
 import Search from '/components/search.js';
@@ -15,7 +15,7 @@ const LandingPage = () => (
     <FormDialog />
     <Search />
     <Dropdown />
-    <TabComponent />
+    <LandingPageTabs />
   </main>
 );
 

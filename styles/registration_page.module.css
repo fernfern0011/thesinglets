@@ -39,6 +39,8 @@
 .input {
     width: 200px; 
     height: 11px; 
+    border: 1px solid;
+    border-radius: 20px;
 }
 
 .submit:hover {
