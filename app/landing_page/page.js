@@ -3,7 +3,7 @@ import styles from '/styles/landing_page.module.css';
 
 export default function Registration() {
   useEffect(() => {
-    // By default, open the first tab
+    // By default, open the first tab hi
     document.getElementsByClassName(styles.tablinks)[0].click();
   }, []);
 
