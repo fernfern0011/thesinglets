@@ -3,6 +3,7 @@ import LandingPageTabs from '/components/landingPageTabs.js';
 import Dropdown from '/components/dropdown.js';
 import Overlay1 from '/components/overlay1.js';
 import Search from '/components/search.js';
+import FormDialog from '/components/dialog.js';
 
 import styles from '/styles/landing_page.module.css';
 
@@ -13,6 +14,7 @@ const LandingPage = () => (
     <Search />
     <Dropdown />
     <LandingPageTabs />
+    <FormDialog />
   </main>
 );
 
