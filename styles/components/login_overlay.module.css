@@ -1,0 +1,80 @@
+.overlayButton {
+    position: absolute;
+    border: transparent;
+    color: black;
+    text-transform: capitalize;
+    top: 7px;
+    right: 85px;
+}
+
+.overlayButton:hover {
+    border: none;
+    background-color: transparent;
+}
+
+.login {
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* everything below here is for the login fields only*/
+
+.form {
+    background-color: white;
+    margin: 0 auto;
+    height: auto;
+    width: 250px;
+    padding: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.label {
+    text-align: left;
+}
+
+.formInput {
+    width: 200px;
+    height: 20px;
+    border: 1px solid;
+    border-color: gray;
+}
+
+.formLabel {
+    margin-top: 5px;
+    text-align: left;
+    display: inline-block;
+    width: 198px;
+    color:black;
+}
+
+.inputHover:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border: 1px solid;
+}
+
+.lowerButton {
+    margin-top: 28px;
+    height: 21px;
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 200px !important;
+    position: relative;
+}
+
+.register {
+    display: block;
+    margin-top: 8px;
+    float: center;
+    color: black;
+    font-size: 10px;
+    margin-bottom: 15px;
+    text-decoration: underline;
+}

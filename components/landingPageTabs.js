@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PostExample1 from '/components/postExample1.js';
 import PostExample2 from '/components/postExample2.js';
 import PostExample3 from '/components/postExample3.js';
+import Dropdown from '/components/Dropdown.js';
 import styles from '/styles/components/tabs.module.css';
 
 function LandingPageTabs() {
@@ -44,6 +45,8 @@ function LandingPageTabs() {
             </button>
         </div>
         <hr className={styles.horizontalLine}/>
+
+        <Dropdown />
 
         <div id="forYou" className={`${"tabcontent"}`}>
           <PostExample1 />

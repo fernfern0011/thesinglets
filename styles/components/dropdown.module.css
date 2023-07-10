@@ -1,13 +1,48 @@
 .dropdown {
-    border: none;
-    background-color: white;
-    font-family: Inter;
-    font-size: 13px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    margin: 0 10px;
-    padding: 3px;
-    border-radius: 3px;
+  border: none;
+  background-color: white;
+  font-family: Inter;
+  font-size: 13px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  margin: 0 10px;
+  padding: 3px;
+  border-radius: 3px;
+  position: relative; /* Add position: relative to enable child positioning */
 }
+
 .dropdown:hover {
   cursor: pointer;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.dropdown:checked + .dropdownContent {
+  display: block; /* Show dropdown content when the dropdown is checked */
+}
+
+.dropdownContent label {
+  display: block;
+  padding: 5px 10px;
+}
+
+.dropdownContent label:hover {
+  background-color: red; /* Apply red background color on hover */
+}
+
+.dropdownContent input[type="radio"] {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown:checked + .dropdownContent label {
+  color: red; /* Apply red font color when the dropdown is checked */
 }
