@@ -36,7 +36,7 @@ function SearchBarTabs() {
             <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'people')}>
                 People
             </button>
-            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag')}>
+            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag1')}>
                 Hashtag
             </button>
         </div>
@@ -50,7 +50,7 @@ function SearchBarTabs() {
             <b>Search Keyword Ranking 2</b>
         </div>
 
-        <div id="hashtag" className={`${"tabcontent"}`}>
+        <div id="hashtag1" className={`${"tabcontent"}`}>
             <b>Search Keyword Ranking 3</b>
         </div>
 
