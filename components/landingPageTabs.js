@@ -5,7 +5,12 @@ import PostExample2 from '/components/postExample2.js';
 import PostExample3 from '/components/postExample3.js';
 import styles from '/styles/components/tabs.module.css';
 
-function TabComponent() {
+import DropdownGender from '/components/dropdownGender.js';
+import DropdownBrand from '/components/dropdownBrand.js';
+import DropdownCategory from '/components/dropdownCategory.js';
+import DropdownColour from '/components/dropdownColour.js';
+
+function LandingPageTabs() {
     useEffect(() => {
       // By default, open the first tab
       document.getElementsByClassName(styles.tablinks)[0].click();
@@ -46,6 +51,11 @@ function TabComponent() {
         <hr className={styles.horizontalLine}/>
 
         <div id="forYou" className={`${"tabcontent"}`}>
+          <DropdownGender />
+          <DropdownBrand />
+          <DropdownCategory />
+          <DropdownColour />
+          <br></br>
           <PostExample1 />
           <PostExample3 />
           <PostExample2 />
@@ -53,11 +63,13 @@ function TabComponent() {
 
 {/* Following Tab */}
       <div id="following" className={`${"tabcontent"}`}>
+        {/* <Dropdown /> */}
         <PostExample2 />
       </div>
 
 {/* Hashtag Tab */}
       <div id="hashtag" className={`${"tabcontent"}`}>
+        {/* <Dropdown /> */}
         <PostExample3 />
       </div>
 
@@ -65,4 +77,4 @@ function TabComponent() {
     )
 }
 
-export default TabComponent;
+export default LandingPageTabs;
