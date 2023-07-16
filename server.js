@@ -8,10 +8,12 @@ const PORT = process.env.PORT || 3500
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
+// const { MongoClient } = require('mongodb')
+// const dbName = 'thesinglets';
 connectDB()
-DATABASE_URI = "mongodb+srv://sathwikch:Sunny0204@thesinglets.bxskgvh.mongodb.net/thesinglets?retryWrites=true&w=majority";
+// DATABASE_URI = "mongodb+srv://sathwikch:Sunny0204@thesinglets.bxskgvh.mongodb.net/thesinglets?retryWrites=true&w=majority";
 // Import User Schema
-const accountSchema = require('./models/account.model');
+// const accountSchema = require('./models/account.model');
 
 app.use(cors(corsOptions))
 app.use(express.json())

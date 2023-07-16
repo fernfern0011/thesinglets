@@ -24,11 +24,12 @@ const mongoose = require('mongoose')
 //     }
 // )
 
-const accountSchema = new mongoose.Schema({
-    accType: String,
-    accUsername: String,
-    accEmail: String,
-    accPassword: String,
-  });
+// const accountSchema = new mongoose.Schema({
+//     accType: String,
+//     accUsername: String,
+//     accEmail: String,
+//     accPassword: String,
+//   });
 
-module.exports = accountSchema;
+
+module.exports = mongoose.model('Account', accountSchema);
