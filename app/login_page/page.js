@@ -1,42 +1,53 @@
-import React, { useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
+'use client'
+import React, { useEffect, useState} from 'react';
 import dynamic from 'next/dynamic';
-import { useClient } from 'react-ssr-client';
 import styles from '../../styles/login_page.module.css'
+import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { withRouter } from 'next/router';
 
 export default function login() {
-    useClient(); // Mark the component as a client component
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const router = useRouter();
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(email,password);
 
-        // Make a POST request to your login API endpoint
-        fetch('/api/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
+        //make get request from router to get email and password, 
+        //so will get the api to call and compare input email and if theres email existing in db
+        //if email not in db, json send account not found 
+        //if email found, check if password is correct
+        //if both email and password correct, redirect back to landing page with session
+        axios.get(`http://localhost:3500/api/account/getAccountByEmail/${email}`, {
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         })
-            .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the server
-                if (data.success) {
-                    // Redirect the user to the desired page
-                    router.push('/landing_page2');
-                } else {
-                    // Show an error message to the user
-                    console.log('Login failed. Please try again.');
+            .then(({data}) => {
+              console.log(data)
+              console.log(data.accPassword)
+              console.log(data.accEmail)
+
+              if (data) {
+                // Compare the input password with the password from the database
+                if (password === data.accPassword) {
+                  // Redirect to the landing page after successful login
+                  router.push('/landing_page2');
+                } 
+                else {
+                  alert('Incorrect password. Please try again.');
                 }
+              } 
+              else {
+                alert('Email not found. Please try again.');
+              }
             })
             .catch((error) => {
-                console.error('Error:', error);
+                alert(error);
+                console.log('ERROR: '+ error);
             });
     };
-
 
     return (
         <main className={styles.main}>
@@ -66,9 +77,7 @@ export default function login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </p>
-                {/* </form> */}
 
-                {/* <form className={styles.input}> */}
                 <input
                     className={`${styles.lowerButton} ${styles.inputHover}`}
                     type="submit"

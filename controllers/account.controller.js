@@ -31,6 +31,27 @@ const getAccountByID = asyncHandler(async (req, res) => {
         })
 })
 
+// @desc Get an account by Email
+// @route GET /getAccountByEmail
+// @access Private
+const getAccountByEmail = asyncHandler(async (req, res) => {
+    const { email } = req.params;
+    Account
+        .findOne({ accEmail: email })
+        // .select('-accPassword')
+        .then(account => {
+            if (account) {
+                return res.status(200).send(account);
+              } else {
+                return res.status(404).json({ message: 'Account not found. Please try again' });
+              }
+        })
+        .catch(error => {
+            console.log(error);
+            return res.status(500).json(error);
+        })
+})
+
 // @desc Create a new account
 // @route POST /accounts
 // @access Private
@@ -138,6 +159,7 @@ const deleteAccount = asyncHandler(async (req, res) => {
 module.exports = {
     getAllAccounts,
     getAccountByID,
+    getAccountByEmail,
     createNewAccount,
     updateAccount,
     deleteAccount
