@@ -7,26 +7,32 @@ import DialogTitle from '@mui/material/DialogTitle';
 import styles from '/styles/components/login_overlay.module.css'; 
 import FormDialogRegister from '/components/register_overlay.js'; 
  
-export default function FormDialog() { 
+export default function FormDialog({ isLoggedIn, onLoginStatusChange }) { 
   const [open, setOpen] = React.useState(false); 
- 
   const handleClickOpen = () => { 
     setOpen(true); 
   }; 
- 
   const handleClose = () => { 
     setOpen(false); 
-  }; 
+  };
+  
+  const handleLogin = () => {
+    event.preventDefault();
+    handleClose();
+    onLoginStatusChange(true);
+  };
  
   return ( 
     <div> 
-      <Button  
-        variant="outlined"  
-        onClick={handleClickOpen} 
-        className={styles.overlayButton} 
-      > 
-        Login 
-      </Button> 
+      {!isLoggedIn ? (
+        <Button  
+          variant="outlined"  
+          onClick={handleClickOpen} 
+          className={styles.overlayButton} 
+        > 
+          Login 
+        </Button>
+      ) : null }
       <Dialog open={open} onClose={handleClose}> 
         <DialogTitle className={styles.login}>Login</DialogTitle> 
         <DialogContent> 
@@ -50,8 +56,14 @@ export default function FormDialog() {
                   </p> 
                 </form> 
  
-                <form className={styles.input}> 
-                  <input className={`${styles.lowerButton} ${styles.inputHover}`} type="submit" value="LOGIN" style={{ width: '210px' }} /> 
+                <form className={styles.input}>
+                    <input
+                      className={`${styles.lowerButton} ${styles.inputHover}`}
+                      type="submit"
+                      value="LOGIN"
+                      style={{ width: '210px' }}
+                      onClick={handleLogin}
+                    /> 
                 </form> 
  
                 <FormDialogRegister onClose={handleClose} /> 
