@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
-    "axios": "^1.4.0",
-    "bcrypt": "^5.1.0",
+    "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dom": "^0.0.3",
@@ -21,21 +20,19 @@
     "eslint-config-next": "^12.0.4",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
-    "mongodb": "^5.7.0",
-    "mongoose": "^7.3.2",
-    "mongoose-sequence": "^5.3.1",
-
+    "mongoose": "^7.3.1",
+<<<<<<< Updated upstream
     "next": "13.4.7",
-
+=======
     "mongoose-sequence": "^5.3.1",
     "next": "^13.4.7",
-
+>>>>>>> Stashed changes
     "postcss": "8.4.24",
     "react": "^18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
+    "nodemon": "^1.14.9",
     "tailwindcss": "^3.3.2"
   }
 }
