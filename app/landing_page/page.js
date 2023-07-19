@@ -1,7 +1,22 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+import React, { useEffect } from 'react';
+import SearchPage from '/app/search_page/page.js';
+import FormDialog from '/components/login_overlay.js';
+
+import PostExample1 from '/components/postExample1.js';
+import PostExample2 from '/components/postExample2.js';
+import PostExample3 from '/components/postExample3.js';
+// import styles from '/styles/components/tabs.module.css';
+
+import DropdownGender from '/components/dropdownGender.js';
+import DropdownBrand from '/components/dropdownBrand.js';
+import DropdownCategory from '/components/dropdownCategory.js';
+import DropdownColour from '/components/dropdownColour.js';
+
+
 import styles from '/styles/landing_page.module.css';
 
-export default function Registration() {
+export default function LandingPage() {
   useEffect(() => {
     // By default, open the first tab
     document.getElementsByClassName(styles.tablinks)[0].click();
@@ -26,305 +41,51 @@ export default function Registration() {
     evt.currentTarget.classList.add(styles.active);
   }
 
-    const [overlayVisible, setOverlayVisible] = useState(false);
-    function openOverlay() {
-      setOverlayVisible(true);
-    }
-    
-    function closeOverlay() {
-      setOverlayVisible(false);
-    }
-
   return (
     <main className={styles.main}>
-      <div className={styles.landing_page}>
       <h1 className={`${styles.h1} jetbrains-mono`}>The Singlets</h1>
-
-{/* Login Button */}
-      <button className={`${styles.open} ${styles.loginButton}`} onClick={openOverlay}>Login</button>
-      {overlayVisible && (
-        <div id="overlay" className={`${styles.overlayPopup} ${'overlay'}`} style={{justifyContent:"center"}}>
-          <div className={`${styles.popup} ${"popup"}`}>
-            <button className={styles.close} onClick={closeOverlay}>X</button>
-            <iframe className={styles.iframe} src="/login_page"></iframe>
-          </div>
+      <FormDialog />
+      <SearchPage />
+      <br></br>
+      <div>
+            <div className={styles.tab}>
+            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'forYou')}>
+            For You
+            </button>
+            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'following')}>
+            Following
+            </button>
+            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag')}>
+            Hashtag
+            </button>
         </div>
-      )}
+        <hr className={styles.horizontalLine}/>
 
-{/* Tab Buttons */}
-      <div className={styles.tab}>
-          <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'forYou')}>
-          For You
-          </button>
-          <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'following')}>
-          Following
-          </button>
-          <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag')}>
-          Hashtag
-          </button>
-      </div>
-      <hr className={styles.horizontalLine}/>
-
-      <a className={styles.search} href='/search_page'>
-          <img src="/icons8-search-30.png" alt="Image description"></img>
-      </a>
-      
-      <select name="gender" className={styles.dropdown}>
-        <option value="all">All</option>
-        <option value="men">Men</option>
-        <option value="woman">Woman</option>
-      </select>
-
-      <select name="brand" className={styles.dropdown}>
-        <option value="Zara">Zara</option>
-        <option value="Mango">Mango</option>
-      </select>
-
-      <select name="category" className={styles.dropdown}>
-        <option value="category">Category</option>
-        <option value="tops">Tops</option>
-        <option value="bottoms">Bottoms</option>
-      </select>
-
-      <select name="colour" className={styles.dropdown}>
-        <option value="colour">Colour</option>
-        <option value="black">Black</option>
-        <option value="white">White</option>
-        <option value="red">Red</option>
-      </select>
-
-{/* For You Tab */}
-      <div id="forYou" className={`${"tabcontent"}`}>
-        <div className={styles.post}>
+        <div id="forYou" className={`${"tabcontent"}`}>
+          <DropdownGender />
+          <DropdownBrand />
+          <DropdownCategory />
+          <DropdownColour />
           <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">iamlittlefernnnn</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
+          <PostExample1 />
+          <PostExample3 />
+          <PostExample2 />
         </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">iamlittlefernnnn</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">iamlittlefernnnn</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">iamlittlefernnnn</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">iamlittlefernnnn</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-      </div>
 
 {/* Following Tab */}
       <div id="following" className={`${"tabcontent"}`}>
-        <div className={styles.post}>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/images.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">ryoryorooooo</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-          </div>
-
-          <div className={styles.post}>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/images.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">ryoryorooooo</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-          </div>
-
-          <div className={styles.post}>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/images.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">ryoryorooooo</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-          </div>
-
-          <div className={styles.post}>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/images.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">ryoryorooooo</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-          </div>
-
-          <div className={styles.post}>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="/images.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">ryoryorooooo</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-          </div>
+        {/* <Dropdown /> */}
+        <PostExample2 />
       </div>
 
 {/* Hashtag Tab */}
       <div id="hashtag" className={`${"tabcontent"}`}>
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="6fee8ba216efcdf25ea6fa3db8d066f1.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">angelmuah</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="6fee8ba216efcdf25ea6fa3db8d066f1.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">angelmuah</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="6fee8ba216efcdf25ea6fa3db8d066f1.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">angelmuah</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="6fee8ba216efcdf25ea6fa3db8d066f1.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">angelmuah</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-
-        <div className={styles.post}>
-          <br></br>
-          <a href='POST PAGE'>
-              <img className={styles.postImage} src="6fee8ba216efcdf25ea6fa3db8d066f1.jpg" alt="image1 FOR U"></img>
-          </a>
-          <br></br>
-          <img className={styles.upvote} src="/upward-arrow-icon-2.jpg" alt="up arrow"></img>
-          <p className={styles.voteNumber}>14</p>
-          <img className={styles.downvote} src="/upward-arrow-icon-2.jpg" alt="down arrow"></img>
-          <p className={styles.voteNumber}>2</p>
-          <br></br>
-          <a className={styles.profileLink} href="/profile page">angelmuah</a>
-          <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
-        </div>
-        
+        {/* <Dropdown /> */}
+        <PostExample3 />
       </div>
 
-
-    </div>
+      </div>
     </main>
+
   );
 }

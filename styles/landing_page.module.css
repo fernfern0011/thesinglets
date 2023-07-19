@@ -12,3 +12,29 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
+
+
+.tab {
+    text-align: center;
+}
+.tablinks:hover {
+  cursor: pointer;
+}
+.tablinks {
+    border: none;
+    background-color: white;
+    font-family: Inter;
+    font-size: 14px;
+    padding: 20px 25px 12px 25px;
+    border-bottom: 2px solid transparent;
+}
+
+.tablinks.active {
+    border-bottom: 2.5px solid #E60010;
+}
+
+.horizontalLine {
+    background-color: #b8b8b8;
+    margin-top: 0;
+    margin-bottom: 18px;
+}

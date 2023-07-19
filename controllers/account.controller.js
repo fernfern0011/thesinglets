@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
 // @desc Get all accounts
-// @route GET /accounts
+// @route GET /getAllAccounts
 // @access Private
 const getAllAccounts = asyncHandler(async (req, res) => {
     Account
@@ -18,7 +18,7 @@ const getAllAccounts = asyncHandler(async (req, res) => {
 })
 
 // @desc Get an account by ID
-// @route GET /getAccountByID
+// @route GET /getAccount/:id
 // @access Private
 const getAccountByID = asyncHandler(async (req, res) => {
     Account
@@ -53,7 +53,7 @@ const getAccountByEmail = asyncHandler(async (req, res) => {
 })
 
 // @desc Create a new account
-// @route POST /accounts
+// @route POST /createNewAccount
 // @access Private
 const createNewAccount = asyncHandler(async (req, res) => {
     const { accUsername, accEmail, accPassword } = req.body
@@ -88,11 +88,11 @@ const createNewAccount = asyncHandler(async (req, res) => {
 
 
 // @desc Update an account
-// @route PUT /accounts
+// @route PUT /updateAccount/:id
 // @access Private
-const updateAccount = asyncHandler(async (req, res) => {
+const updateAccountByID = asyncHandler(async (req, res) => {
     const { accEmail, newPassword, confirmedPassword } = req.body
-    const { id } = req.query
+    const accountById = await Account.findById(req.params.id).exec()
 
     // Confirm data
     if (!accEmail, !newPassword, !confirmedPassword) {
@@ -103,8 +103,6 @@ const updateAccount = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Password must be the same' })
     }
 
-    const accountById = await Account.findById(id).exec()
-
     if (!accountById) {
         return res.status(400).json({ message: 'Account not found' })
     }
@@ -112,7 +110,7 @@ const updateAccount = asyncHandler(async (req, res) => {
     // Check for duplicate
     const duplicate = await Account.findOne({ accEmail }).lean().exec()
     // Allow updates to the original account
-    if (duplicate && duplicate?._id.toString() !== id) {
+    if (duplicate && duplicate?._id.toString() !== accountById) {
         return res.status(409).json({ message: 'Duplicate Email' })
     }
 
@@ -135,22 +133,22 @@ const updateAccount = asyncHandler(async (req, res) => {
 })
 
 // @desc Delete an account
-// @route DELETE /accounts
+// @route DELETE /deleteAccount/:id
 // @access Private
-const deleteAccount = asyncHandler(async (req, res) => {
-    const { id } = req.query
+const deleteAccountByID = asyncHandler(async (req, res) => {
+    const accountById = await Account.findById(req.params.id).exec()
 
-    if (!id) {
+    if (!accountById) {
         return res.status(400).json({ message: 'Account ID is required' })
     }
 
-    const deleteAccount = await Account.findById(id).exec()
+    const deleteAccount = await Account.findById(accountById).exec()
 
     if (!deleteAccount) {
         return res.status(400).json({ message: 'Account not found' })
     }
 
-    const result = await Account.findByIdAndDelete(id)
+    const result = await Account.findByIdAndDelete(accountById)
 
     const message = `Username ${result.accUsername} with ID ${result._id} deleted`
     res.json(message)
@@ -161,6 +159,6 @@ module.exports = {
     getAccountByID,
     getAccountByEmail,
     createNewAccount,
-    updateAccount,
-    deleteAccount
+    updateAccountByID,
+    deleteAccountByID
 }
