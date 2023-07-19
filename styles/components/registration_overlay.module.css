@@ -1,80 +1,88 @@
-.overlayButton { 
-    border: transparent; 
-    color: black; 
-    text-transform: capitalize; 
-    text-decoration: underline; 
-    margin-top: 10px; 
-    bottom: 7px; 
-    text-align: center; 
-    font-size: 12px; 
-} 
- 
-.overlayButton:hover { 
-    border: none; 
-    background-color: transparent; 
-    text-decoration: underline; 
-} 
- 
-.form { 
-    background-color: white; 
-    width: 250px; 
-    height: auto; 
-    font-size:10px; 
-    text-align: center; 
-    justify-content: center; 
-  } 
- 
-.register { 
-    text-align: center; 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-    font-weight: bold; 
-    margin-top: 20px; 
-    font-size: 18px; 
-} 
- 
-/* everything below fpr login fields */ 
- 
-.close { 
-    float: right; 
-    text-decoration: none; 
-    color: black; 
-} 
- 
-.input { 
-    width: 200px; 
-    height: 20px; 
-    border: 1px solid; 
-    border-color: gray; 
-} 
- 
-.label { 
-    margin-top: 5px; 
-    text-align: left; 
-    display: inline-block; 
-    width: 198px; 
-    color:black; 
-} 
- 
-.submit:hover { 
-    background-color: white; 
-    color: black; 
-} 
- 
-.regis { 
-    text-align: left; 
-    display: inline-block; 
-    width: 198px; 
-    margin-right: 10px; 
-} 
- 
-.lowerButton { 
-    margin-top: 23px; 
-    height: 21px; 
-    background-color: black; 
-    color: white; 
-    font-size: 10px; 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-    width: 200px !important; 
-    position: relative; 
-    margin-bottom: 33px; 
+.overlayButton {
+  border: transparent;
+  color: black;
+  text-transform: capitalize;
+  text-decoration: underline;
+  margin-top: 10px;
+  bottom: 7px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.overlayButton:hover {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.form {
+  background-color: white;
+  width: 250px;
+  height: auto;
+  font-size: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+.register {
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* everything below fpr login fields */
+
+.close {
+  float: right;
+  text-decoration: none;
+  color: black;
+}
+
+.input {
+  width: 200px;
+  height: 20px;
+  border: 1px solid;
+  border-color: gray;
+}
+
+.label {
+  margin-top: 5px;
+  text-align: left;
+  display: inline-block;
+  width: 198px;
+  color: black;
+}
+
+.submit:hover {
+  background-color: white;
+  color: black;
+}
+
+.regis {
+  text-align: left;
+  display: inline-block;
+  width: 198px;
+  margin-right: 10px;
+}
+
+.lowerButton {
+  margin-top: 23px;
+  height: 21px;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 200px !important;
+  position: relative;
+  margin-bottom: 33px;
+}
+
+/* Error Message */
+.errorMessage {
+  color: red !important;
+  margin-top: 5px !important;
 }
