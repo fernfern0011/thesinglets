@@ -1,66 +1,169 @@
 import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import styles from '/styles/components/dropdown.module.css';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+
+const StyledMenu = styled((props) => (
+  <Menu
+  elevation={0}
+  anchorOrigin={{
+    vertical: 'bottom',
+    horizontal: 'left',
+  }}
+  transformOrigin={{
+    vertical: 'top',
+    horizontal: 'left',
+  }}
+  {...props}
+/>
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
+    borderRadius: 6,
+    marginTop: theme.spacing(1),
+    minWidth: 0,
+    color:
+      theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+    boxShadow:
+      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    '& .MuiMenu-list': {
+      padding: '0px 0',
+    },
+    '& .MuiMenuItem-root': {
+      '& .MuiSvgIcon-root': {
+        fontSize: 14,
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(0),
+      },
+    },
+    '& .Mui-selected': {
+      backgroundColor: 'rgba(255, 0, 0, 0.1)',
+    },
+    '& .Mui-selected:hover': {
+      backgroundColor: 'rgba(255, 0, 0, 0.1)', // Change hover color to red when selected
     },
   },
-};
+}));
 
-const colour = [
-  'Black',
-  'White',
-  'Red'
-]
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function DropdownColour() {
-  const [personName, setPersonName] = React.useState([]);
+export default function CustomizedMenus() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+  const [selectedIndex, setSelectedIndex] = React.useState({
+    black: 0,
+    white: 0,
+    red: 0
+  });
+
+  const handleListItemClick = (buttonName) => {
+    setSelectedIndex((prevIndex) => ({
+      ...prevIndex, // Copy the previous state
+      [buttonName]: prevIndex[buttonName] === 0 ? 1 : 0 // Toggle the state for the clicked button
+    }));
   };
 
   return (
-    <div className={styles.dropdown}>
-      <FormControl sx={{ m: 1, width: 150 }}>
-        <InputLabel id="colour-label">Colour</InputLabel>
-        <Select
-          labelId="colour-label"
-          id="colour-checkbox"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput label="Colour" />}
-          renderValue={(selected) => selected.join(', ')}
-          MenuProps={MenuProps}
+    <div className={styles.main}>
+      <Button
+        id="demo-customized-button"
+        aria-controls={open ? 'demo-customized-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        variant="contained"
+        disableElevation
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDownIcon />}
+        sx={{
+          color: 'black', // Set the text color to red
+          border: 'transparent',
+          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)', // Add a shadow (right and bottom sides)
+          textTransform: 'none',
+          '&:hover': {
+            backgroundColor: 'white', // Change background color to red on hover
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)', // Add a shadow on hover (right and bottom sides)
+            color: '#E50010',
+          },
+          '&.MuiButton-contained.Mui-selected': {
+            color: 'red', // Set the text color to red for the selected state
+          },
+        }}
+      >
+        Colour
+      </Button>
+      <StyledMenu
+        id="demo-customized-menu"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem
+          disableRipple
+          selected={selectedIndex.black === 1}
+          className={styles.checkbox}
         >
-          {colour.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+          <FormGroup>
+            <FormControlLabel
+              label="Black"
+              control={<Checkbox
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                onClick={() => handleListItemClick('black')}/>}
+                />
+          </FormGroup>
+        </MenuItem>
+
+        <MenuItem
+          disableRipple
+          selected={selectedIndex.white === 1}
+        >
+          <FormGroup>
+            <FormControlLabel
+                label="White"
+                control={<Checkbox
+                  icon={<RadioButtonUncheckedIcon />}
+                  checkedIcon={<RadioButtonCheckedIcon />}
+                  onClick={() => handleListItemClick('white')}/>}
+                  />  
+          </FormGroup>
+        </MenuItem>
+
+        <MenuItem
+          disableRipple
+          selected={selectedIndex.red === 1}
+        >
+          <FormGroup>
+            <FormControlLabel
+                  label="Red"
+                  control={<Checkbox
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                    onClick={() => handleListItemClick('red')}/>}
+            />  
+          </FormGroup>
+        </MenuItem>
+
+
+      </StyledMenu>
     </div>
   );
 }
