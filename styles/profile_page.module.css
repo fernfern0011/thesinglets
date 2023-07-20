@@ -44,12 +44,13 @@
 .editButton {
     position: relative;
     display: inline-block;
-    background-color: red;
+    color: black;
+    background-color: #cccccc;
     width: 150px;
     top: -55px;
 }
 .editButton:hover {
-    background-color: rgba(255, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 .following {
     padding: 0px 20px;

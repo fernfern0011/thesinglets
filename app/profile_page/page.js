@@ -63,10 +63,6 @@ function SearchBarTabs() {
 
             </div>
 
-
-
-
-
             <hr className={styles.horizontalLine}/>
             <div className={styles.tab}>
             <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'posts')}>

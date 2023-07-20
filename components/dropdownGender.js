@@ -25,9 +25,9 @@ const StyledMenu = styled((props) => (
 />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
-    borderRadius: 6,
+    borderRadius: 0,
     marginTop: theme.spacing(1),
-    minWidth: 0,
+    minWidth: 105,
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
@@ -36,10 +36,20 @@ const StyledMenu = styled((props) => (
       padding: '0px 0',
     },
     '& .MuiMenuItem-root': {
+      paddingRight: 0,
+      paddingTop: 2,
+      paddingBottom: 2,
+      '.MuiFormControlLabel-label': {
+        fontSize: 14,
+        color: 'black',
+      },
       '& .MuiSvgIcon-root': {
         fontSize: 14,
-        color: theme.palette.text.secondary,
+        color: 'black',
         marginRight: theme.spacing(0),
+          '&.Mui-checked': {
+            color: 'black',
+          },
       },
     },
     '& .Mui-selected': {
@@ -66,7 +76,7 @@ export default function CustomizedMenus() {
     women: 0,
   });
 
-  const handleListItemClick = ( buttonName) => {
+  const handleListItemClick = (buttonName) => {
     setSelectedIndex((prevIndex) => ({
       ...prevIndex, // Copy the previous state
       [buttonName]: prevIndex[buttonName] === 0 ? 1 : 0 // Toggle the state for the clicked button
@@ -116,7 +126,11 @@ export default function CustomizedMenus() {
           className={styles.checkbox}
         >
           <FormGroup>
-            <FormControlLabel control={<Checkbox  onClick={() => handleListItemClick('men')}/>} label="Men" />
+            <FormControlLabel control={<Checkbox
+              checked={selectedIndex.men === 1}
+              onClick={() => handleListItemClick('men')}
+              />}
+            label="Men" />
           </FormGroup>
         </MenuItem>
         <MenuItem
@@ -124,7 +138,11 @@ export default function CustomizedMenus() {
           selected={selectedIndex.women === 1}
         >
           <FormGroup>
-            <FormControlLabel  control={<Checkbox onClick={() => handleListItemClick('women')}/>} label="Women" />  
+            <FormControlLabel  control={<Checkbox
+              checked={selectedIndex.women === 1}
+              onClick={() => handleListItemClick('women')}
+              />}
+            label="Women" />  
           </FormGroup>
         </MenuItem>
 
