@@ -13,7 +13,6 @@ import DropdownCategory from '/components/dropdownCategory.js';
 import DropdownColour from '/components/dropdownColour.js';
 import ProfileDrawer from '/components/profileDrawer.js';
 
-
 import styles from '/styles/landing_page.module.css';
 
 export default function LandingPage() {

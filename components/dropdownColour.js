@@ -10,9 +10,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import styles from '/styles/components/dropdown.module.css';
 
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-
 const StyledMenu = styled((props) => (
   <Menu
   elevation={0}
@@ -28,9 +25,9 @@ const StyledMenu = styled((props) => (
 />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
-    borderRadius: 6,
+    borderRadius: 0,
     marginTop: theme.spacing(1),
-    minWidth: 0,
+    minWidth: 100,
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
@@ -39,10 +36,20 @@ const StyledMenu = styled((props) => (
       padding: '0px 0',
     },
     '& .MuiMenuItem-root': {
+      paddingRight: 0,
+      paddingTop: 2,
+      paddingBottom: 2,
+      '.MuiFormControlLabel-label': {
+        fontSize: 14,
+        color: 'black',
+      },
       '& .MuiSvgIcon-root': {
         fontSize: 14,
-        color: theme.palette.text.secondary,
+        color: 'black',
         marginRight: theme.spacing(0),
+          '&.Mui-checked': {
+            color: 'black',
+          },
       },
     },
     '& .Mui-selected': {
@@ -53,8 +60,6 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -125,9 +130,8 @@ export default function CustomizedMenus() {
             <FormControlLabel
               label="Black"
               control={<Checkbox
-                icon={<RadioButtonUncheckedIcon />}
-                checkedIcon={<RadioButtonCheckedIcon />}
                 onClick={() => handleListItemClick('black')}/>}
+                checked={selectedIndex.black === 1}
                 />
           </FormGroup>
         </MenuItem>
@@ -140,9 +144,8 @@ export default function CustomizedMenus() {
             <FormControlLabel
                 label="White"
                 control={<Checkbox
-                  icon={<RadioButtonUncheckedIcon />}
-                  checkedIcon={<RadioButtonCheckedIcon />}
                   onClick={() => handleListItemClick('white')}/>}
+                  checked={selectedIndex.white === 1}
                   />  
           </FormGroup>
         </MenuItem>
@@ -155,9 +158,8 @@ export default function CustomizedMenus() {
             <FormControlLabel
                   label="Red"
                   control={<Checkbox
-                    icon={<RadioButtonUncheckedIcon />}
-                    checkedIcon={<RadioButtonCheckedIcon />}
                     onClick={() => handleListItemClick('red')}/>}
+                    checked={selectedIndex.red === 1}
             />  
           </FormGroup>
         </MenuItem>
