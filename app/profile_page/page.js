@@ -4,6 +4,7 @@ import styles from '/styles/profile_page.module.css';
 import PostExample1 from '/components/postExample1.js';
 import PostExample2 from '/components/postExample2.js';
 import PostExample3 from '/components/postExample3.js';
+import Profile from '/components/profile.js';
 
 import ButtonMUI from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -47,14 +48,17 @@ function SearchBarTabs() {
                     <p>Male | 176cm</p>
                     <p>Nothing to describe here</p>
                 </div>
-                <ButtonMUI
+                {/* <ButtonMUI
                     className={styles.editButton}
                     variant="contained"
                     fullWidth='True'
                     size='small'
                     >
                     Edit Profile
-                </ButtonMUI>
+                </ButtonMUI> */}
+                <Profile 
+                    classname={styles.editButton}
+                />
                 <div className={styles.following}>
                     <p className={styles.following1}>0 Post</p>
                     <a className={styles.following1} href="Follower Overlay">0 Follower</a>
