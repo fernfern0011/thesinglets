@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '/styles/create_post_page.module.css';
 
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
@@ -60,15 +61,19 @@ export default function CreatePost() {
 
             <div className={styles.uploadImageContainer}>
                 {selectedImage ? (
-                    <label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleInputChange}
-                            hidden
-                        />
-                        <img src={selectedImage} alt="Uploaded" className={styles.imagePreview} />
-                    </label>
+                    <div className={styles.uploadImage}>
+                        <label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleInputChange}
+                                hidden
+                            />
+                            <img src={selectedImage} alt="Uploaded" className={styles.imagePreview} />
+                        </label>
+                        <p className={styles.imageURL}>{selectedImage}</p>
+                    </div>
+
                 ) : (
                     <label className={styles.uploadImage}>
                         <div className={styles.uploadImageIcon}>
@@ -84,6 +89,8 @@ export default function CreatePost() {
                     </label>
                 )}
             </div>
+            <a className={styles.button} style= {{ left: '25%' }} href='/landing_page'>Cancel</a>
+            <a className={styles.button} style= {{ right: '25%' }} href='/create_post_page2'>Next</a>
         </main>
     )
 }

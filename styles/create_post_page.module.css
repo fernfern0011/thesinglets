@@ -34,7 +34,6 @@
     height: 2px;
     position: relative;
     display: inline-block;
-    /* background: #00C2FF; */
     border: none;
     width: 50px;
     left: -5px;
@@ -48,17 +47,17 @@
 
 /* Upload Image */
 .uploadImageContainer {
-    padding-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 450px;
+    margin-top: -50px;
 }
 .uploadImage {
     border: 1px dotted #A39D9D;
     text-align: center;
     justify-content: center;
-    height: 75%;
+    height: 70%;
     width: 50%;
 }
 .uploadImageIcon {
@@ -68,5 +67,17 @@
 }
 .imagePreview {
     max-width: 100%;
-    max-height: 75%;
+    max-height: 300px;
+    display: block;
+    margin: 10px auto 10px;
+}
+.imageURL {
+    color: #A39D9D;
+    font-size: 14px;
+}
+
+.button {
+    position: absolute;
+    bottom: 20%;
+    font-size: 14px;
 }
