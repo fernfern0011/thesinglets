@@ -3,9 +3,6 @@ import React, { useEffect } from 'react';
 import SearchPage from '/app/search_page/page.js';
 import FormDialog from '/components/login_overlay.js';
 
-import PostExample1 from '/components/postExample1.js';
-import PostExample2 from '/components/postExample2.js';
-import PostExample3 from '/components/postExample3.js';
 // import styles from '/styles/components/tabs.module.css';
 
 import DropdownGender from '/components/dropdownGender.js';
@@ -15,6 +12,7 @@ import DropdownColour from '/components/dropdownColour.js';
 
 
 import styles from '/styles/landing_page.module.css';
+import PostGridList from '/components/postGridList';
 
 export default function LandingPage() {
   useEffect(() => {
@@ -67,21 +65,17 @@ export default function LandingPage() {
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-          <PostExample1 />
-          <PostExample3 />
-          <PostExample2 />
+          <PostGridList />
         </div>
 
 {/* Following Tab */}
       <div id="following" className={`${"tabcontent"}`}>
         {/* <Dropdown /> */}
-        <PostExample2 />
       </div>
 
 {/* Hashtag Tab */}
       <div id="hashtag" className={`${"tabcontent"}`}>
         {/* <Dropdown /> */}
-        <PostExample3 />
       </div>
 
       </div>
