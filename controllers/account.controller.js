@@ -32,25 +32,41 @@ const getAccountByID = asyncHandler(async (req, res) => {
 })
 
 // @desc Get an account by Email
-// @route GET /getAccountByEmail
+// @route GET /login/email/password
 // @access Private
-const getAccountByEmail = asyncHandler(async (req, res) => {
-    const { email } = req.params;
-    Account
-        .findOne({ accEmail: email })
-        // .select('-accPassword')
-        .then(account => {
-            if (account) {
-                return res.status(200).send(account);
-              } else {
-                return res.status(404).json({ message: 'Account not found. Please try again' });
-              }
-        })
-        .catch(error => {
-            console.log(error);
-            return res.status(500).json(error);
-        })
-})
+const login = asyncHandler(async (req, res) => {
+    const { email, password } = req.params;
+
+    try {
+        const account = await Account.findOne({ accEmail: email });
+
+        //if account exists
+        if (account) {
+            bcrypt.compare(password, account.accPassword, function (err, result) {
+
+                //if password matches
+                if (result) {
+                  return res.status(200).json(account);
+                } 
+                
+                //wrong password
+                else {
+                  return res.status(401).json({ message: err });
+                }
+              });
+        } 
+        
+        //if account not found
+        else {
+            return res.status(404).json({ message: 'Account not found. Please try again' });
+        }
+    } 
+    
+    catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+});
 
 // @desc Create a new account
 // @route POST /createNewAccount
@@ -157,7 +173,7 @@ const deleteAccountByID = asyncHandler(async (req, res) => {
 module.exports = {
     getAllAccounts,
     getAccountByID,
-    getAccountByEmail,
+    login,
     createNewAccount,
     updateAccountByID,
     deleteAccountByID
