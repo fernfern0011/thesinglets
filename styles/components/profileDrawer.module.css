@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=JetBrains+Mono&display=swap');
+
+.main {
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.button {
+    color: #000000;
+    font-size:14px;
+    position: absolute;
+    top: 5px;
+    outline: none;
+}
+.profileButton {
+    padding-right: 5px;
+}
+
+.IconButton {
+    color: red;
+}
+
+.profile {
+    display: inline-block;
+    padding-top: 6%;
+    position: absolute;
+}
+
+.handle {
+    color: red;
+    display: block;
+}
+
+.options {
+    margin: 10px 0px;
+}
+
+.logout {
+    background-color: red;
+    position: absolute;
+    bottom: 10px;
+    left: 65px;
+    width: 200px;
+}
+
+.logout:hover {
+    background-color: rgba(255, 0, 0, 0.4);
+}

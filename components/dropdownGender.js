@@ -1,56 +1,62 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import styles from '/styles/components/dropdown.module.css';
 
 const StyledMenu = styled((props) => (
   <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'right',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'right',
-    }}
-    {...props}
-  />
+  elevation={0}
+  anchorOrigin={{
+    vertical: 'bottom',
+    horizontal: 'left',
+  }}
+  transformOrigin={{
+    vertical: 'top',
+    horizontal: 'left',
+  }}
+  {...props}
+/>
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
-    borderRadius: 6,
+    borderRadius: 0,
     marginTop: theme.spacing(1),
-    minWidth: 180,
+    minWidth: 105,
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
       'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
     '& .MuiMenu-list': {
-      padding: '4px 0',
+      padding: '0px 0',
     },
     '& .MuiMenuItem-root': {
-      '& .MuiSvgIcon-root': {
-        fontSize: 18,
-        color: theme.palette.text.secondary,
-        marginRight: theme.spacing(1.5),
+      paddingRight: 0,
+      paddingTop: 2,
+      paddingBottom: 2,
+      '.MuiFormControlLabel-label': {
+        fontSize: 14,
+        color: 'black',
       },
-      // '&:active': {
-      //   backgroundColor: alpha(
-      //     theme.palette.primary.main,
-      //     theme.palette.action.selectedOpacity,
-      //   ),
-      // },
+      '& .MuiSvgIcon-root': {
+        fontSize: 14,
+        color: 'black',
+        marginRight: theme.spacing(0),
+          '&.Mui-checked': {
+            color: 'black',
+          },
+      },
+    },
+    '& .Mui-selected': {
+      backgroundColor: 'rgba(255, 0, 0, 0.1)',
+    },
+    '& .Mui-selected:hover': {
+      backgroundColor: 'rgba(255, 0, 0, 0.1)', // Change hover color to red when selected
     },
   },
 }));
@@ -65,8 +71,20 @@ export default function CustomizedMenus() {
     setAnchorEl(null);
   };
 
+  const [selectedIndex, setSelectedIndex] = React.useState({
+    men: 0,
+    women: 0,
+  });
+
+  const handleListItemClick = (buttonName) => {
+    setSelectedIndex((prevIndex) => ({
+      ...prevIndex, // Copy the previous state
+      [buttonName]: prevIndex[buttonName] === 0 ? 1 : 0 // Toggle the state for the clicked button
+    }));
+  };
+
   return (
-    <div>
+    <div className={styles.main}>
       <Button
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -77,11 +95,21 @@ export default function CustomizedMenus() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
         sx={{
-          color: 'black',
-          border: '1px solid gray'
+          color: 'black', // Set the text color to red
+          border: 'transparent',
+          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)', // Add a shadow (right and bottom sides)
+          textTransform: 'none',
+          '&:hover': {
+            backgroundColor: 'white', // Change background color to red on hover
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)', // Add a shadow on hover (right and bottom sides)
+            color: '#E50010',
+          },
+          '&.MuiButton-contained.Mui-selected': {
+            color: 'red', // Set the text color to red for the selected state
+          },
         }}
       >
-        Options
+        Gender
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -92,14 +120,33 @@ export default function CustomizedMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem  disableRipple>
-
+        <MenuItem
+          disableRipple
+          selected={selectedIndex.men === 1}
+          className={styles.checkbox}
+        >
           <FormGroup>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Men" />
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Women" />
+            <FormControlLabel control={<Checkbox
+              checked={selectedIndex.men === 1}
+              onClick={() => handleListItemClick('men')}
+              />}
+            label="Men" />
           </FormGroup>
-
         </MenuItem>
+        <MenuItem
+          disableRipple
+          selected={selectedIndex.women === 1}
+        >
+          <FormGroup>
+            <FormControlLabel  control={<Checkbox
+              checked={selectedIndex.women === 1}
+              onClick={() => handleListItemClick('women')}
+              />}
+            label="Women" />  
+          </FormGroup>
+        </MenuItem>
+
+
       </StyledMenu>
     </div>
   );

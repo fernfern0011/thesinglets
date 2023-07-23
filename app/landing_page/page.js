@@ -3,18 +3,22 @@ import React, { useEffect } from 'react';
 import SearchPage from '/app/search_page/page.js';
 import FormDialog from '/components/login_overlay.js';
 
-// import styles from '/styles/components/tabs.module.css';
 
 import DropdownGender from '/components/dropdownGender.js';
 import DropdownBrand from '/components/dropdownBrand.js';
 import DropdownCategory from '/components/dropdownCategory.js';
 import DropdownColour from '/components/dropdownColour.js';
-
+import ProfileDrawer from '/components/profileDrawer.js';
 
 import styles from '/styles/landing_page.module.css';
 import PostGridList from '/components/postGridList';
 
 export default function LandingPage() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const handleLoginStatusChange = (status) => {
+    setIsLoggedIn(status);
+  }
+
   useEffect(() => {
     // By default, open the first tab
     document.getElementsByClassName(styles.tablinks)[0].click();
@@ -42,7 +46,8 @@ export default function LandingPage() {
   return (
     <main className={styles.main}>
       <h1 className={`${styles.h1} jetbrains-mono`}>The Singlets</h1>
-      <FormDialog />
+      <ProfileDrawer isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
+      <FormDialog isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
       <SearchPage />
       <br></br>
       <div>
@@ -70,15 +75,26 @@ export default function LandingPage() {
 
 {/* Following Tab */}
       <div id="following" className={`${"tabcontent"}`}>
-        {/* <Dropdown /> */}
+        <DropdownGender />
+          <DropdownBrand />
+          <DropdownCategory />
+          <DropdownColour />
+          <br></br>
+        <PostExample2 />
       </div>
 
 {/* Hashtag Tab */}
       <div id="hashtag" className={`${"tabcontent"}`}>
-        {/* <Dropdown /> */}
-      </div>
+      <DropdownGender />
+          <DropdownBrand />
+          <DropdownCategory />
+          <DropdownColour />
+          <br></br>
+        <PostExample3 />
 
       </div>
+      </div>
+
     </main>
 
   );

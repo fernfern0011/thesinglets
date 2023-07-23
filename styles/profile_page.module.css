@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=JetBrains+Mono&display=swap');
+
+.main {
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.h1{
+    color:#000;
+    text-align: center;
+    font-size:19px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 15px;
+    display: block;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.profilePic {
+    position: relative;
+    display: inline-block;
+    top: -40px;
+}
+.profile {
+    display: inline-block;
+}
+.profileInfo {
+    display: inline-block;
+    padding: 20px 20px 0px 20px;
+}
+.name {
+    display: inline-block;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+.handle {
+    margin-left: 5px;
+    font-size: 20px;
+    color:red;
+    display: inline-block;
+}
+
+.editButton {
+    position: relative;
+    display: inline-block;
+    color: black;
+    background-color: #cccccc;
+    width: 150px;
+    top: -55px;
+}
+.editButton:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.following {
+    padding: 0px 20px;
+}
+.following1 {
+    display: inline-block;
+    padding-right: 50px;
+}
+
+
+
+
+
+.tab {
+    text-align: center;
+}
+.tablinks:hover {
+  cursor: pointer;
+}
+.tablinks {
+    border: none;
+    background-color: white;
+    font-family: Inter;
+    font-size: 14px;
+    padding: 12px 25px 20px 25px;
+    border-top: 2px solid transparent;
+}
+
+.tablinks.active {
+    border-top: 2.5px solid #E60010;
+}
+
+.horizontalLine {
+    background-color: #b8b8b8;
+}
+
