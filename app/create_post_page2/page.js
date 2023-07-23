@@ -1,19 +1,20 @@
 'use client';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import styles from '/styles/create_post_page.module.css';
+import { useRouter } from 'next/navigation';
 
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import CircleIcon from '@mui/icons-material/Circle';
 import ImageIcon from '@mui/icons-material/Image';
 
-export default function CreatePost() {
-    // const [selectedImage, setSelectedImage] = useState(null);
+export default function CreatePost2() {
+    const router = useRouter();
+    const { image } = router.query;
 
     return (
         <main className={styles.main}>
             <a href='/landing_page'className={`${styles.h1} jetbrains-mono`}>The Singlets</a>
-
+            {image && <img src={image} alt="Preview" />}
             <div className={styles.progressBarContainer}>
                 <div className={styles.progressBar}>
                     <p className={styles.progressBarNumber}>1</p>

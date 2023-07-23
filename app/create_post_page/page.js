@@ -1,14 +1,15 @@
 'use client';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import styles from '/styles/create_post_page.module.css';
 
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import CircleIcon from '@mui/icons-material/Circle';
 import ImageIcon from '@mui/icons-material/Image';
 
-export default function CreatePost() {
+export default function CreatePost1() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const router = useRouter();
 
     const handleInputChange = (e) => {
       const file = e.target.files[0];
@@ -17,6 +18,14 @@ export default function CreatePost() {
         setSelectedImage(URL.createObjectURL(file));
       }
     };
+    
+    const handleNext = () => {
+        // Pass the image data as a query parameter to the PreviewImage page
+        router.push({
+          pathname: '/create_post_page2/page',
+          query: { image: selectedImage },
+        });
+      };
 
     return (
         <main className={styles.main}>
@@ -90,7 +99,7 @@ export default function CreatePost() {
                 )}
             </div>
             <a className={styles.button} style= {{ left: '25%' }} href='/landing_page'>Cancel</a>
-            <a className={styles.button} style= {{ right: '25%' }} href='/create_post_page2'>Next</a>
+            <a onClick={handleNext} className={styles.button} style= {{ right: '25%' }} href='/create_post_page2'>Next</a>
         </main>
     )
 }
