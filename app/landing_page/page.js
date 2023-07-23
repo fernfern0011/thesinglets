@@ -12,6 +12,10 @@ import ProfileDrawer from '/components/profileDrawer.js';
 
 import styles from '/styles/landing_page.module.css';
 import PostGridList from '/components/postGridList';
+import PostExample2 from '@/components/postExample2';
+import PostExample3 from '@/components/postExample3';
+
+
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
