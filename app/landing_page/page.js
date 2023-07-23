@@ -12,6 +12,7 @@ import DropdownBrand from '/components/dropdownBrand.js';
 import DropdownCategory from '/components/dropdownCategory.js';
 import DropdownColour from '/components/dropdownColour.js';
 import ProfileDrawer from '/components/profileDrawer.js';
+import TagItem from '/components/tag_item.js';
 
 import styles from '/styles/landing_page.module.css';
 
@@ -51,6 +52,7 @@ export default function LandingPage() {
       <ProfileDrawer isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
       <FormDialog isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
       <SearchPage />
+      {/* <TagItem /> */}
       <br></br>
       <div>
             <div className={styles.tab}>
