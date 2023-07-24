@@ -84,7 +84,7 @@ export default function LandingPage() {
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-        <PostExample2 />
+        <PostGridList />
       </div>
 
 {/* Hashtag Tab */}
@@ -94,7 +94,7 @@ export default function LandingPage() {
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-        <PostExample3 />
+        <PostGridList />
 
       </div>
       </div>
