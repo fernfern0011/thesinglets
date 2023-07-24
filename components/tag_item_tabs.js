@@ -41,17 +41,12 @@ function SearchBarTabs() {
         <hr className={styles.horizontalLine}/>
 
         <div id="search" className={`${"tabcontent"}`}>
-            <b>Search Keyword Ranking 1</b>
             <Search />
         </div>
 
         <div id="manual" className={`${"tabcontent"}`}>
-            <b>Search Keyword Ranking 2</b>
         </div>
 
-        <div id="hashtag1" className={`${"tabcontent"}`}>
-            <b>Search Keyword Ranking 3</b>
-        </div>
 
       </main>
     )
