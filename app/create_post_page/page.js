@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '/styles/create_post_page.module.css';
 
@@ -10,22 +10,23 @@ import ImageIcon from '@mui/icons-material/Image';
 export default function CreatePost1() {
     const [selectedImage, setSelectedImage] = useState(null);
     const router = useRouter();
-
+  
     const handleInputChange = (e) => {
       const file = e.target.files[0];
       if (file) {
-        // You can perform additional checks here, like checking the file type and size
         setSelectedImage(URL.createObjectURL(file));
       }
     };
-    
-    const handleNext = () => {
-        // Pass the image data as a query parameter to the PreviewImage page
-        router.push({
-          pathname: '/create_post_page2/page',
-          query: { image: selectedImage },
-        });
-      };
+  
+    const handleNextClick = () => {
+      if (selectedImage) {
+        // Save the selectedImage URL to local storage
+        localStorage.setItem('selectedImage', selectedImage);
+  
+        // Navigate to "CreatePostPage2"
+        router.push('/create_post_page2');
+      }
+    };
 
     return (
         <main className={styles.main}>
@@ -80,7 +81,9 @@ export default function CreatePost1() {
                             />
                             <img src={selectedImage} alt="Uploaded" className={styles.imagePreview} />
                         </label>
-                        <p className={styles.imageURL}>{selectedImage}</p>
+                        <div className={styles.url}>
+                            <p className={styles.imageURL}>{selectedImage}</p>
+                        </div>
                     </div>
 
                 ) : (
@@ -99,7 +102,14 @@ export default function CreatePost1() {
                 )}
             </div>
             <a className={styles.button} style= {{ left: '25%' }} href='/landing_page'>Cancel</a>
-            <a onClick={handleNext} className={styles.button} style= {{ right: '25%' }} href='/create_post_page2'>Next</a>
+            <button
+                className={styles.button}
+                style={{ right: '25%' }}
+                onClick={handleNextClick}
+                disabled={!selectedImage}
+            >
+                Next
+            </button>
         </main>
     )
 }

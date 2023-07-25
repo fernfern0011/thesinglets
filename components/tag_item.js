@@ -70,12 +70,7 @@ export default function TagItem({ isLoggedIn, onLoginStatusChange }) {
   const handleClose = () => { 
     setOpen(false); 
   };
-  
-  const handleLogin = () => {
-    event.preventDefault();
-    handleClose();
-    onLoginStatusChange(true);
-  };
+
  
   return ( 
     <div> 
