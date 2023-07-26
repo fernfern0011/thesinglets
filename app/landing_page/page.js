@@ -3,9 +3,6 @@ import React, { useEffect } from 'react';
 import SearchPage from '/app/search_page/page.js';
 import FormDialog from '/components/login_overlay.js';
 
-import PostExample1 from '/components/postExample1.js';
-import PostExample2 from '/components/postExample2.js';
-import PostExample3 from '/components/postExample3.js';
 
 import DropdownGender from '/components/dropdownGender.js';
 import DropdownBrand from '/components/dropdownBrand.js';
@@ -15,6 +12,11 @@ import ProfileDrawer from '/components/profileDrawer.js';
 import TagItem from '/components/tag_item.js';
 
 import styles from '/styles/landing_page.module.css';
+import PostGridList from '/components/postGridList';
+import PostExample2 from '@/components/postExample2';
+import PostExample3 from '@/components/postExample3';
+
+
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -74,9 +76,7 @@ export default function LandingPage() {
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-          <PostExample1 />
-          <PostExample3 />
-          <PostExample2 />
+          <PostGridList />
         </div>
 
 {/* Following Tab */}
@@ -86,7 +86,7 @@ export default function LandingPage() {
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-        <PostExample2 />
+        <PostGridList />
       </div>
 
 {/* Hashtag Tab */}
@@ -96,7 +96,7 @@ export default function LandingPage() {
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-        <PostExample3 />
+        <PostGridList />
 
       </div>
       </div>

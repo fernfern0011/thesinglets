@@ -40,3 +40,8 @@
     text-overflow: ellipsis;
     margin-top: 5px;
   }
+  .postGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Display 4 columns in each row */
+    gap: 20px; /* Add spacing between posts */
+  }
