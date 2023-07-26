@@ -1,19 +1,30 @@
 'use client';
-import React, { useEffect,useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from '/styles/create_post_page.module.css';
 
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import CircleIcon from '@mui/icons-material/Circle';
 import ImageIcon from '@mui/icons-material/Image';
 
-export default function CreatePost() {
+export default function CreatePost1() {
     const [selectedImage, setSelectedImage] = useState(null);
-
+    const router = useRouter();
+  
     const handleInputChange = (e) => {
       const file = e.target.files[0];
       if (file) {
-        // You can perform additional checks here, like checking the file type and size
         setSelectedImage(URL.createObjectURL(file));
+      }
+    };
+  
+    const handleNextClick = () => {
+      if (selectedImage) {
+        // Save the selectedImage URL to local storage
+        localStorage.setItem('selectedImage', selectedImage);
+  
+        // Navigate to "CreatePostPage2"
+        router.push('/create_post_page2');
       }
     };
 
@@ -60,15 +71,21 @@ export default function CreatePost() {
 
             <div className={styles.uploadImageContainer}>
                 {selectedImage ? (
-                    <label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleInputChange}
-                            hidden
-                        />
-                        <img src={selectedImage} alt="Uploaded" className={styles.imagePreview} />
-                    </label>
+                    <div className={styles.uploadImage}>
+                        <label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleInputChange}
+                                hidden
+                            />
+                            <img src={selectedImage} alt="Uploaded" className={styles.imagePreview} />
+                        </label>
+                        <div className={styles.url}>
+                            <p className={styles.imageURL}>{selectedImage}</p>
+                        </div>
+                    </div>
+
                 ) : (
                     <label className={styles.uploadImage}>
                         <div className={styles.uploadImageIcon}>
@@ -84,6 +101,15 @@ export default function CreatePost() {
                     </label>
                 )}
             </div>
+            <a className={styles.button} style= {{ left: '25%' }} href='/landing_page'>Cancel</a>
+            <button
+                className={styles.button}
+                style={{ right: '25%' }}
+                onClick={handleNextClick}
+                disabled={!selectedImage}
+            >
+                Next
+            </button>
         </main>
     )
 }
