@@ -13,35 +13,35 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function SearchBarTabs() {
   const [userInfo, setUserInfo] = useState({});
 
-//   useEffect(() => {
-//     // Fetch user information from the server
-//     const fetchUserInfo = async () => {
-//       try {
-//         const response = await axios.get('http://localhost:3500/api/userinfo/getUserInfo');
-//         console.log('User Info Response:', response.data);
-//         // Assuming the API response is an array, use the first item as userInfo
-//         if (response.data.length > 0) {
-//           setUserInfo(response.data[0]);
-//         }
-//       } catch (error) {
-//         console.error('Error fetching user information:', error);
-//       }
-//     };
-//     fetchUserInfo();
-//   }, []);
-
   useEffect(() => {
-        // Fetch currently logged-in user's information from the server
-        const fetchUserInfo = async () => {
-        try {
-            const response = await axios.get('http://localhost:3500/api/userinfo/getCurrentUser');
-            setUserInfo(response.data);
-        } catch (error) {
-            console.error('Error fetching user information:', error);
+    // Fetch user information from the server
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get('http://localhost:3500/api/userinfo/getUserInfo');
+        console.log('User Info Response:', response.data);
+        // Assuming the API response is an array, use the first item as userInfo
+        if (response.data.length > 0) {
+          setUserInfo(response.data[0]);
         }
-        };
-        fetchUserInfo();
-   }, []);
+      } catch (error) {
+        console.error('Error fetching user information:', error);
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
+//   useEffect(() => {
+//         // Fetch currently logged-in user's information from the server
+//         const fetchUserInfo = async () => {
+//         try {
+//             const response = await axios.get('http://localhost:3500/api/userinfo/getCurrentUser');
+//             setUserInfo(response.data);
+//         } catch (error) {
+//             console.error('Error fetching user information:', error);
+//         }
+//         };
+//         fetchUserInfo();
+//    }, []);
     
 
 
