@@ -130,5 +130,6 @@ module.exports = {
     getAccountByID,
     createNewAccount,
     updateAccountByID,
-    deleteAccountByID
+    deleteAccountByID,
+    getCurrentAccount,
 }

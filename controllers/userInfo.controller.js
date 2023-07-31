@@ -16,18 +16,23 @@ const getUserInfo = asyncHandler(async (req, res) => {
       })
 })
 
-// const getAllPosts = asyncHandler(async (req, res) => {
-//     try {
-//       const posts = await Post.find();
-//       console.log('Fetched Posts:', posts); // Debugging statement to check the fetched posts
-//       return res.status(200).send(posts);
-//     } catch (error) {
-//       console.log('Error:', error); // Debugging statement to check for any errors
-//       return res.status(500).json({ error: 'Internal Server Error' });
-//     }
-//   });
+// Assuming you have a route to get the currently logged-in user's information
+// /api/userinfo/getCurrentUser
+// Make sure you handle user authentication in this route to ensure only logged-in users can access it.
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+    // Assuming you have stored the user's information in the session under the key 'user'
+    // If you have a different key for the user's information in the session, use that key instead.
+    const user = req.session.user;
+    if (user) {
+      return res.status(200).json(user);
+    } else {
+      return res.status(401).json({ message: 'User not logged in' });
+    }
+  });
   
 
 module.exports = {
-    getUserInfo
+    getUserInfo,
+    getCurrentUser,
 }
