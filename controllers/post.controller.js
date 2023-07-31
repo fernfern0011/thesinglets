@@ -16,18 +16,37 @@ const getAllPosts = asyncHandler(async (req, res) => {
       })
 })
 
-// const getAllPosts = asyncHandler(async (req, res) => {
-//     try {
-//       const posts = await Post.find();
-//       console.log('Fetched Posts:', posts); // Debugging statement to check the fetched posts
-//       return res.status(200).send(posts);
-//     } catch (error) {
-//       console.log('Error:', error); // Debugging statement to check for any errors
-//       return res.status(500).json({ error: 'Internal Server Error' });
-//     }
-//   });
+const createPost = asyncHandler(async (req, res) => {
+    // Assuming you have a session middleware that handles session authentication and adds the authenticated account ID to the session object (e.g., req.session.accountId)
+    const accountId = req.session.accountId;
   
+    // Extract post data from the request body
+    const { description, gender, postImage, hashtag, itemTag } = req.body;
+  
+    try {
+      // Create a new post object with the account ID and other details
+      const newPost = new Post({
+        accID: accountId,
+        description,
+        gender,
+        postImage,
+        hashtag,
+        itemTag,
+      });
+  
+      // Save the new post to the database
+      const savedPost = await newPost.save();
+  
+      // Return the newly created post in the response
+      res.status(201).json(savedPost);
+    } catch (error) {
+      console.error('Error creating post:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
 
 module.exports = {
-    getAllPosts
+    getAllPosts,
+    createPost,
 }
