@@ -1,4 +1,5 @@
 const Account = require('../models/account.model')
+const UserInfo = require('../models/userInfo.model')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
@@ -51,7 +52,11 @@ const createNewAccount = asyncHandler(async (req, res) => {
     // Create and store new account 
     const account = await Account.create(accountObject)
 
-    if (account) { //created 
+    // If account is created
+    if (account) {
+        // Create new user profile
+        UserInfo.create({"accID": account?._id, })
+
         return res.status(201).json({ message: `New account ${accUsername} created` })
     } else {
         res.status(400).json({ message: 'Invalid account data received' })
@@ -131,5 +136,5 @@ module.exports = {
     createNewAccount,
     updateAccountByID,
     deleteAccountByID,
-    getCurrentAccount,
+    // getCurrentAccount,
 }
