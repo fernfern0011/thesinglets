@@ -44,12 +44,11 @@
     border: transparent; 
     color: black; 
     text-transform: capitalize; 
-    top: 7px; 
-    right: 85px; 
+    top: 7px;
 } 
  
 .overlayButton:hover { 
-    border: none; 
+    border: none;
     background-color: transparent; 
 } 
 
