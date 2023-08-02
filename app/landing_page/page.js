@@ -12,17 +12,28 @@ import ProfileDrawer from '/components/profileDrawer.js';
 import TagItem from '/components/tag_item.js';
 
 import styles from '/styles/landing_page.module.css';
+
+import {useSessionStorage} from '../../sessionChecker';
 import PostGridList from '/components/postGridList';
 import PostExample2 from '@/components/postExample2';
 import PostExample3 from '@/components/postExample3';
 
 
-
 export default function LandingPage() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const handleLoginStatusChange = (status) => {
-    setIsLoggedIn(status);
+  const [isLoggedIn, setIsLoggedIn] = React.useState();
+  const sessionLog = useSessionStorage();
+  console.log(sessionLog)
+
+  // const handleLoginStatusChange = (status) => {
+  //   setIsLoggedIn(status);
+  //   console.log(status)
+  // }
+  
+  const handleLoginStatusChange = (sessionLog) => {
+    setIsLoggedIn(sessionLog);
   }
+  
+  console.log(isLoggedIn);
 
   useEffect(() => {
     // By default, open the first tab
@@ -51,8 +62,8 @@ export default function LandingPage() {
   return (
     <main className={styles.main}>
       <h1 className={`${styles.h1} jetbrains-mono`}>The Singlets</h1>
-      <ProfileDrawer isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
-      <FormDialog isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
+      <ProfileDrawer isLoggedIn={sessionLog} onLoginStatusChange={handleLoginStatusChange}/>
+      <FormDialog isLoggedIn={sessionLog} onLoginStatusChange={handleLoginStatusChange}/>
       <SearchPage />
       {/* <TagItem /> */}
       <br></br>
