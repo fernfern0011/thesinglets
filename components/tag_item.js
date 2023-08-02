@@ -61,38 +61,50 @@ export default function TagItem({ onDoneButtonClick }) {
                 </div>
                 <hr className={styles.horizontalLine} />
 
-                <div
-                  id="search"
-                  className={`${styles.tabcontent} ${
-                    activeTab === 'search' ? styles.activeContent : ''
-                  }`}
-                >
-                  <SearchBar />
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <BasicSwitches sx={{ transform: 'scale(0.1)' }} /> {/* Adjust the scale value as needed */}
-                    <span style={{ marginLeft: '0px' }} className={styles.closet}>My Closet</span>
-                  </div>
-                  <b>Search Keyword Ranking 1</b>
-                  <Button variant="text" className={styles.cancel}>Cancel</Button>
-                  <Button variant="text" className={styles.done}>Done</Button>
-                </div>
+                {/* Content for the Search tab */}
+                {activeTab === 'search' && (
+                  <>
+                    <div
+                      id="search"
+                      className={`${styles.tabcontent} ${
+                        activeTab === 'search' ? styles.activeContent : ''
+                      }`}
+                    >
+                      <SearchBar />
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                        <BasicSwitches sx={{ transform: 'scale(0.1)' }} /> {/* Adjust the scale value as needed */}
+                        <span style={{ marginLeft: '0px' }} className={styles.closet}>My Closet</span>
+                      </div>
+                      <div style={{ fontWeight: 'bold', marginTop: '20px' }}>
+                        Search Keyword Ranking 1
+                      </div>
+                      <Button variant="text" className={styles.cancel}>Cancel</Button>
+                      <Button variant="text" className={styles.done}>Done</Button>
+                    </div>
+                  </>
+                )}
 
-                <div
-                  id="manual"
-                  className={`${styles.tabcontent} ${
-                    activeTab === 'manual' ? styles.activeContent : ''
-                  }`}
-                >
-                  <TagItemManualContents />
-                  <Button variant="text" className={styles.cancel}>Cancel</Button>
-                  <Button
+                {/* Content for the Manual tab */}
+                {activeTab === 'manual' && (
+                  <>
+                    <div
+                      id="manual"
+                      className={`${styles.tabcontent} ${
+                        activeTab === 'manual' ? styles.activeContent : ''
+                      }`}
+                    >
+                      <TagItemManualContents />
+                      <Button variant="text" className={styles.cancel}>Cancel</Button>
+                      <Button
                     variant="text"
                     onClick={() => {
                       handleClose();
                       onDoneButtonClick();
                       }}
                     className={styles.done}>Done</Button>
-                </div>
+                    </div>
+                  </>
+                )}
               </div>
             </main>
           </DialogContentText>
