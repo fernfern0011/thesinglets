@@ -7,10 +7,32 @@ import styles from '/styles/components/tag_item_manual_contents.module.css';
 
 export default function TagItemManualContents() {
   const [selectedOption, setSelectedOption] = React.useState('');
+  const [brandName, setBrandName] = React.useState('');
+  const [itemName, setItemName] = React.useState('');
+  const [category, setCategory] = React.useState('');
+  const [color, setColor] = React.useState('');
 
-  const handleOptionChange = (option) => {
+  const handleBrandNameChange = (event) => {
+    setBrandName(event.target.value);
+  };
+  const handleItemNameChange = (event) => {
+    setItemName(event.target.value);
+  };
+  const handleCategoryChange = (option) => {
+    setCategory(option);
     setSelectedOption(option);
   };
+  const handleColorChange = (option) => {
+    setColor(option);
+    setSelectedOption(option);
+  };
+
+  React.useEffect(() => {
+    localStorage.setItem('brandName', brandName);
+    localStorage.setItem('itemName', itemName);
+    localStorage.setItem('category', category);
+    localStorage.setItem('color', color);
+  }, [selectedOption, brandName, itemName, category, color]);
 
   const category_options = ['Tops', 'Pants']; // add stuff here to add more options in Category
   const color_options = ['White', 'Black']
@@ -50,6 +72,8 @@ export default function TagItemManualContents() {
                 fullWidth
                 inputProps={{ style: { textAlign: 'left', height: '13px' } }}
                 sx={{ width: '30ch' }}
+                value={brandName}
+                onChange={handleBrandNameChange}
               />
             </Grid>
 
@@ -71,6 +95,8 @@ export default function TagItemManualContents() {
                 fullWidth
                 inputProps={{ style: { textAlign: 'left', height: '13px'} }}
                 sx={{ width: '30ch' }}
+                value={itemName}
+                onChange={handleItemNameChange}
               />
             </Grid>
 
@@ -87,7 +113,7 @@ export default function TagItemManualContents() {
                   <Button
                     key={category_options}
                     variant={selectedOption === category_options ? 'contained' : 'outlined'}
-                    onClick={() => handleOptionChange(category_options)}
+                    onClick={() => handleCategoryChange(category_options)}
                     sx={{
                       textTransform: 'none',
                       borderRadius: '5px',
@@ -115,7 +141,7 @@ export default function TagItemManualContents() {
                   <Button
                     key={color_options}
                     variant={selectedOption === color_options ? 'contained' : 'outlined'}
-                    onClick={() => handleOptionChange(color_options)}
+                    onClick={() => handleColorChange(color_options)}
                     sx={{
                       textTransform: 'none',
                       borderRadius: '5px',

@@ -8,19 +8,14 @@ import SearchBar from '/components/searchBar.js';
 import BasicSwitches from '/components/switch.js';
 import TagItemManualContents from '/components/tag_item_manual_contents.js';
 
-export default function TagItem({ isLoggedIn, onLoginStatusChange }) {
+export default function TagItem({ onDoneButtonClick }) {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleLogin = () => {
-    event.preventDefault();
-    handleClose();
-    onLoginStatusChange(true);
+    window.location.reload();
   };
 
   // State to keep track of the currently active tab
@@ -32,15 +27,13 @@ export default function TagItem({ isLoggedIn, onLoginStatusChange }) {
 
   return (
     <div>
-      {!isLoggedIn ? (
-        <Button
-          variant="outlined"
-          onClick={handleClickOpen}
-          className={styles.overlayButton}
-        >
-          TagItem
-        </Button>
-      ) : null}
+      <Button
+        variant="outlined"
+        onClick={handleClickOpen}
+        className={styles.overlayButton}
+      >
+        TagItem
+      </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           <DialogContentText>
@@ -92,7 +85,13 @@ export default function TagItem({ isLoggedIn, onLoginStatusChange }) {
                 >
                   <TagItemManualContents />
                   <Button variant="text" className={styles.cancel}>Cancel</Button>
-                  <Button variant="text" className={styles.done}>Done</Button>
+                  <Button
+                    variant="text"
+                    onClick={() => {
+                      handleClose();
+                      onDoneButtonClick();
+                      }}
+                    className={styles.done}>Done</Button>
                 </div>
               </div>
             </main>
