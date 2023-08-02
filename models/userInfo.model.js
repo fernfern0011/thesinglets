@@ -8,16 +8,20 @@ const userInfoSchema = new mongoose.Schema(
             ref: 'Account'
         },
         bio: {
-            type: String
+            type: String,
+            default: ""
         },
         gender: {
-            type: String
+            type: String,
+            default: ""
         },
         nickname: {
-            type: String
+            type: String,
+            default: ""
         },
         userImage: {
-            type: String
+            type: String,
+            default: ""
         }
     },
     {
@@ -25,4 +29,4 @@ const userInfoSchema = new mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model('UserInfo', userInfoSchema)
+module.exports = mongoose.model('UserInfo', userInfoSchema, 'userinfo')

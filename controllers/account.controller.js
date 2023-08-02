@@ -1,4 +1,5 @@
 const Account = require('../models/account.model')
+const UserInfo = require('../models/userInfo.model')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
@@ -74,11 +75,6 @@ const login = asyncHandler(async (req, res) => {
 const createNewAccount = asyncHandler(async (req, res) => {
     const { accUsername, accEmail, accPassword } = req.body
 
-    // Confirm data
-    if (!accUsername || !accEmail || !accPassword) {
-        return res.status(400).json({ message: 'All fields are required' })
-    }
-
     // Check for duplicate username
     const duplicate = await Account.findOne({ accUsername }).lean().exec()
 
@@ -87,21 +83,22 @@ const createNewAccount = asyncHandler(async (req, res) => {
     }
 
     // Hash password 
-    // const hashedPwd = await bcrypt.hash(accPassword, 10) // salt rounds
-    const hashedPwd = accPassword
-
+    const hashedPwd = await bcrypt.hash(accPassword, 10) // salt rounds
     const accountObject = { accUsername, accEmail, "accPassword": hashedPwd }
 
     // Create and store new account 
     const account = await Account.create(accountObject)
 
-    if (account) { //created 
+    // If account is created
+    if (account) {
+        // Create new user profile
+        UserInfo.create({"accID": account?._id, })
+
         return res.status(201).json({ message: `New account ${accUsername} created` })
     } else {
         res.status(400).json({ message: 'Invalid account data received' })
     }
 })
-
 
 // @desc Update an account
 // @route PUT /updateAccount/:id
@@ -176,5 +173,6 @@ module.exports = {
     login,
     createNewAccount,
     updateAccountByID,
-    deleteAccountByID
+    deleteAccountByID,
+    // getCurrentAccount,
 }

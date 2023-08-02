@@ -3,13 +3,12 @@
 import { useDisclosure } from '@mantine/hooks';
 import { Drawer, Group } from '@mantine/core';
 import { useSessionStorage } from '../sessionChecker';
-
 import { useState, useEffect } from 'react';
+
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
@@ -50,15 +49,10 @@ export default function ProfileDrawer() {
           </IconButton>
           <a href="/profile_page">Profile</a>
           <br></br>
-          <IconButton disableRipple='true' href="/profile_page">
-            <NotificationsNoneOutlinedIcon sx={{ fontSize: 30 }}/>
-          </IconButton>
-          <a href="profilePage">Notification</a>
-          <br></br>
-          <IconButton disableRipple='true' href="profilePage">
+          <IconButton disableRipple='true' href="/create_post_page">
             <ControlPointOutlinedIcon sx={{ fontSize: 30 }}/>
           </IconButton>
-          <a href="profilePage">Create Post</a>
+          <a href="/create_post_page">Create Post</a>
           <br></br>
           <IconButton disableRipple='true' href="profilePage">
             <SettingsOutlinedIcon sx={{ fontSize: 30 }}/>

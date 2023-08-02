@@ -25,9 +25,9 @@ const StyledMenu = styled((props) => (
 />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
-    borderRadius: 6,
+    borderRadius: 0,
     marginTop: theme.spacing(1),
-    minWidth: 0,
+    minWidth: 115,
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
@@ -36,10 +36,20 @@ const StyledMenu = styled((props) => (
       padding: '0px 0',
     },
     '& .MuiMenuItem-root': {
+      paddingRight: 0,
+      paddingTop: 2,
+      paddingBottom: 2,
+      '.MuiFormControlLabel-label': {
+        fontSize: 14,
+        color: 'black',
+      },
       '& .MuiSvgIcon-root': {
         fontSize: 14,
-        color: theme.palette.text.secondary,
+        color: 'black',
         marginRight: theme.spacing(0),
+          '&.Mui-checked': {
+            color: 'black',
+          },
       },
     },
     '& .Mui-selected': {
@@ -90,6 +100,7 @@ export default function CustomizedMenus() {
           border: 'transparent',
           boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)', // Add a shadow (right and bottom sides)
           textTransform: 'none',
+          fontSize: 14,
           '&:hover': {
             backgroundColor: 'white', // Change background color to red on hover
             boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)', // Add a shadow on hover (right and bottom sides)
@@ -117,7 +128,11 @@ export default function CustomizedMenus() {
           className={styles.checkbox}
         >
           <FormGroup>
-            <FormControlLabel control={<Checkbox  onClick={() => handleListItemClick('tops')}/>} label="Tops" />
+            <FormControlLabel control={<Checkbox
+              onClick={() => handleListItemClick('tops')}
+              checked={selectedIndex.tops === 1}
+              />} 
+            label="Tops" />
           </FormGroup>
         </MenuItem>
 
@@ -126,7 +141,11 @@ export default function CustomizedMenus() {
           selected={selectedIndex.bottoms === 1}
         >
           <FormGroup>
-            <FormControlLabel  control={<Checkbox onClick={() => handleListItemClick('bottoms')}/>} label="Bottoms" />  
+            <FormControlLabel  control={<Checkbox
+              onClick={() => handleListItemClick('bottoms')}
+              checked={selectedIndex.bottoms === 1}
+              />}
+            label="Bottoms" />  
           </FormGroup>
         </MenuItem>
 
@@ -135,7 +154,13 @@ export default function CustomizedMenus() {
           selected={selectedIndex.shoes === 1}
         >
           <FormGroup>
-            <FormControlLabel  control={<Checkbox onClick={() => handleListItemClick('shoes')}/>} label="Shoes" />  
+            <FormControlLabel
+            label="Shoes"
+            control={<Checkbox
+              onClick={() => handleListItemClick('shoes')}
+              checked={selectedIndex.shoes === 1}
+              />}
+            />  
           </FormGroup>
         </MenuItem>
 

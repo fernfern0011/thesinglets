@@ -1,11 +1,12 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styles from '/styles/profile_page.module.css';
 import PostExample1 from '/components/postExample1.js';
 import PostExample2 from '/components/postExample2.js';
 import PostExample3 from '/components/postExample3.js';
 import { useSessionStorage } from '../../sessionChecker';
-
+import Profile from '/components/profile.js';
 import ButtonMUI from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
