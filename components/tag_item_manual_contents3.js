@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField'; 
 import styles from '/styles/components/tag_item_manual_contents.module.css';  
  
-export default function TagItemManualContents() { 
+export default function TagItemManualContents3() { 
  
   const [selectedOption, setSelectedCategoryOption] = React.useState('');
   const [selectedOption2, setSelectedColorOption] = React.useState('');  
@@ -30,7 +30,7 @@ export default function TagItemManualContents() {
 
   const tag = { brandName, itemName, category: selectedOption, color: selectedOption2, xPosition: {x}, yPosition: {y} };
   React.useEffect(() => {
-    localStorage.setItem('tag1', JSON.stringify(tag));
+    localStorage.setItem('tag3', JSON.stringify(tag));
   }, [brandName, itemName, selectedOption, selectedOption2, {x}, {y}]);
  
   const handleCategoryOptionChange = (option) => { 

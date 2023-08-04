@@ -7,8 +7,15 @@ import styles from '/styles/components/tag_item.module.css';
 import SearchBar from '/components/searchBar.js';
 import BasicSwitches from '/components/switch.js';
 import TagItemManualContents from '/components/tag_item_manual_contents.js';
+import TagItemManualContents2 from '/components/tag_item_manual_contents2.js';
+import TagItemManualContents3 from '/components/tag_item_manual_contents3.js';
+import TagItemManualContents4 from '/components/tag_item_manual_contents4.js';
 
 export default function TagItem({ onDoneButtonClick }) {
+  const storedTag1 = JSON.parse(localStorage.getItem('tag1'));
+  const storedTag2 = JSON.parse(localStorage.getItem('tag2'));
+  const storedTag3 = JSON.parse(localStorage.getItem('tag3'));
+  const storedTag4 = JSON.parse(localStorage.getItem('tag4'));
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,18 +49,16 @@ export default function TagItem({ onDoneButtonClick }) {
                 <div className={styles.tab}>
                   {/* Search tab */}
                   <button
-                    className={`${styles.tablinks} ${
-                      activeTab === 'search' ? styles.active : ''
-                    }`}
+                    className={`${styles.tablinks} ${activeTab === 'search' ? styles.active : ''
+                      }`}
                     onClick={() => handleTabChange('search')}
                   >
                     Search
                   </button>
                   {/* Manual tab */}
                   <button
-                    className={`${styles.tablinks} ${
-                      activeTab === 'manual' ? styles.active : ''
-                    }`}
+                    className={`${styles.tablinks} ${activeTab === 'manual' ? styles.active : ''
+                      }`}
                     onClick={() => handleTabChange('manual')}
                   >
                     Manual
@@ -66,9 +71,8 @@ export default function TagItem({ onDoneButtonClick }) {
                   <>
                     <div
                       id="search"
-                      className={`${styles.tabcontent} ${
-                        activeTab === 'search' ? styles.activeContent : ''
-                      }`}
+                      className={`${styles.tabcontent} ${activeTab === 'search' ? styles.activeContent : ''
+                        }`}
                     >
                       <SearchBar />
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -85,26 +89,152 @@ export default function TagItem({ onDoneButtonClick }) {
                 )}
 
                 {/* Content for the Manual tab */}
-                {activeTab === 'manual' && (
+                {activeTab === 'manual' && storedTag1 === null ? (
                   <>
                     <div
                       id="manual"
-                      className={`${styles.tabcontent} ${
-                        activeTab === 'manual' ? styles.activeContent : ''
-                      }`}
+                      className={`${styles.tabcontent} ${activeTab === 'manual' ? styles.activeContent : ''
+                        }`}
                     >
                       <TagItemManualContents />
                       <Button variant="text" className={styles.cancel}>Cancel</Button>
                       <Button
-                    variant="text"
-                    onClick={() => {
-                      handleClose();
-                      onDoneButtonClick();
-                      }}
-                    className={styles.done}>Done</Button>
+                        variant="text"
+                        onClick={() => {
+                          handleClose();
+                        }}
+                        className={styles.done}
+                      >
+                        Done
+                      </Button>
                     </div>
                   </>
-                )}
+                ) : null}
+
+                {activeTab === 'manual' && (storedTag1 !== null && storedTag2 === null) ? (
+                    <>
+                    <div
+                      id="manual"
+                      className={`${styles.tabcontent} ${activeTab === 'manual' ? styles.activeContent : ''
+                        }`}
+                    >
+                      <TagItemManualContents2 />
+                      <Button variant="text" className={styles.cancel}>Cancel</Button>
+                      <Button
+                        variant="text"
+                        onClick={() => {
+                          handleClose();
+                        }}
+                        className={styles.done}
+                      >
+                        Done
+                      </Button>
+                    </div>
+                  </>
+                ) : 
+                <>
+                  {activeTab === 'manual' && (storedTag1 !== null && storedTag2.brandName === '') ? (
+                    <>
+                    <div
+                      id="manual"
+                      className={`${styles.tabcontent} ${activeTab === 'manual' ? styles.activeContent : ''
+                        }`}
+                    >
+                      <TagItemManualContents2 />
+                      <Button variant="text" className={styles.cancel}>Cancel</Button>
+                      <Button
+                        variant="text"
+                        onClick={() => {
+                          handleClose();
+                        }}
+                        className={styles.done}
+                      >
+                        Done
+                      </Button>
+                    </div>
+                  </>
+                  ) : null }
+                  </>}
+
+                {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag4 === null ? (
+                  <>
+                  {storedTag2.brandName !== '' ? (
+                    <>
+                    <div
+                      id="manual"
+                      className={`${styles.tabcontent} ${activeTab === 'manual' ? styles.activeContent : ''
+                        }`}
+                    >
+                      <TagItemManualContents3 />
+                      <Button variant="text" className={styles.cancel}>Cancel</Button>
+                      <Button
+                        variant="text"
+                        onClick={() => {
+                          handleClose();
+                        }}
+                        className={styles.done}
+                      >
+                        Done
+                      </Button>
+                    </div>
+                  </>
+                  ) : null}
+                </>
+                ) :
+                <>
+                {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag4.brandName !== '' ? (
+                  <>
+                  <div
+                    id="manual"
+                    className={`${styles.tabcontent} ${activeTab === 'manual' ? styles.activeContent : ''
+                      }`}
+                  >
+                    <TagItemManualContents3 />
+                    <Button variant="text" className={styles.cancel}>Cancel</Button>
+                    <Button
+                      variant="text"
+                      onClick={() => {
+                        handleClose();
+                      }}
+                      className={styles.done}
+                    >
+                      Done
+                    </Button>
+                  </div>
+                </>
+                ) : null}
+              </>}
+
+                {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag3 !== null ? (
+                  <>
+                  {storedTag3.brandName !== '' ? (
+                    <>
+                    <div
+                      id="manual"
+                      className={`${styles.tabcontent} ${activeTab === 'manual' ? styles.activeContent : ''
+                        }`}
+                    >
+                      <TagItemManualContents4 />
+                      <Button variant="text" className={styles.cancel}>Cancel</Button>
+                      <Button
+                        variant="text"
+                        onClick={() => {
+                          handleClose();
+                        }}
+                        className={styles.done}
+                      >
+                        Done
+                      </Button>
+                    </div>
+                  </>
+                  ) : null}
+                </>
+                ) : null}
+
+
+
+
+
               </div>
             </main>
           </DialogContentText>

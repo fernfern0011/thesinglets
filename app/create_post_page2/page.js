@@ -15,39 +15,19 @@ import ImageIcon from '@mui/icons-material/Image';
 
 export default function CreatePost2() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [brandName, setBrandName] = useState('');
+  const [itemName, setItemName] = useState('');
+  const [color, setColor] = useState('');
   useEffect(() => {
     // Retrieve the selectedImage URL from local storage
     const storedImage = localStorage.getItem('selectedImage');
     if (storedImage) {
       setSelectedImage(storedImage);
     }
-  }, []);
-
-  const [brandName, setBrandName] = useState('');
-  useEffect(() => {
-    // Retrieve the stored brand name from local storage
-    const storedBrandName = localStorage.getItem('brandName');
-    if (storedBrandName) {
-      setBrandName(storedBrandName);
-    }
-  }, []);
-
-  const [itemName, setItemName] = useState('');
-  useEffect(() => {
-    // Retrieve the stored brand name from local storage
-    const storedItemName = localStorage.getItem('itemName');
-    if (storedItemName) {
-      setItemName(storedItemName);
-    }
-  }, []);
-
-  const [color, setColor] = useState('');
-  useEffect(() => {
-    // Retrieve the stored color from local storage
-    const storedColor = localStorage.getItem('color');
-    if (storedColor) {
-      setColor(storedColor);
-    }
+    const formValues = JSON.parse(localStorage.getItem('tag')) || {};
+    setBrandName(formValues.brandName || '');
+    setItemName(formValues.itemName || '');
+    setColor(formValues.color || '');
   }, []);
 
   const theme = useMantineTheme();
@@ -66,24 +46,72 @@ export default function CreatePost2() {
     setAnchorEl(null);
   };
 
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const logDoneButtonClick1 = () => {
-    localStorage.setItem('isDoneButtonClicked1', 'true');
+  const cleartag1 = () => {
+    localStorage.removeItem('tag1');
+    window.location.reload();
   };
-  const handleDoneButtonClick = () => {
-    setIsButtonClicked(true);
-    logDoneButtonClick1();
+  const cleartag2 = () => {
+    localStorage.removeItem('tag2');
+    window.location.reload();
   };
-  
-  let isDoneButtonClicked1 = false;
-  if (typeof localStorage !== 'undefined') {
-    isDoneButtonClicked1 = localStorage.getItem('isDoneButtonClicked1') === 'true';
-  }
+  const cleartag3 = () => {
+    localStorage.removeItem('tag3');
+    window.location.reload();
+  };
+
+  const [tag1, setTag1] = useState(null);
+  useEffect(() => {
+    // Retrieve the tag data from local storage
+      const storedTag1 = JSON.parse(localStorage.getItem('tag1'));
+      if (storedTag1) {
+        // Set the retrieved tag data in the tag1 state
+        setTag1({
+          brandName: storedTag1.brandName,
+          itemName: storedTag1.itemName,
+          category: storedTag1.category,
+          color: storedTag1.color,
+          xPosition: storedTag1.xPosition,
+          yPosition: storedTag1.yPosition,
+        });
+      }
+  }, []);
+  const [tag2, setTag2] = useState(null);
+  useEffect(() => {
+    // Retrieve the tag data from local storage
+      const storedTag2 = JSON.parse(localStorage.getItem('tag2'));
+      if (storedTag2) {
+        // Set the retrieved tag data in the tag1 state
+        setTag2({
+          brandName: storedTag2.brandName,
+          itemName: storedTag2.itemName,
+          category: storedTag2.category,
+          color: storedTag2.color,
+          xPosition: storedTag2.xPosition,
+          yPosition: storedTag2.yPosition,
+        });
+      }
+  }, []);
+  const [tag3, setTag3] = useState(null);
+  useEffect(() => {
+    // Retrieve the tag data from local storage
+      const storedTag3 = JSON.parse(localStorage.getItem('tag3'));
+      if (storedTag3) {
+        // Set the retrieved tag data in the tag1 state
+        setTag3({
+          brandName: storedTag3.brandName,
+          itemName: storedTag3.itemName,
+          category: storedTag3.category,
+          color: storedTag3.color,
+          xPosition: storedTag3.xPosition,
+          yPosition: storedTag3.yPosition,
+        });
+      }
+  }, []);
 
   return (
     <main className={styles.main}>
         <a href='/landing_page'className={`${styles.h1} jetbrains-mono`}>The Singlets</a>
-
+      
         <div className={styles.progressBarContainer}>
         <Tooltip.Floating color='rgba(255, 0, 0, 0.7)' label='Click to Tag'>
           <Button
@@ -187,25 +215,60 @@ export default function CreatePost2() {
                 'aria-labelledby': 'basic-button',
               }}
             >
-              <MenuItem ><TagItem onDoneButtonClick={handleDoneButtonClick}/></MenuItem>
+              <MenuItem ><TagItem /></MenuItem>
             </Menu>
           </div>
         </Group>
       </div>
     <div className={styles.tagSection}>
-      {isDoneButtonClicked1 && (
+      {tag1 ? (
         <Text className={styles.tagsContainer}>
           <ImageIcon className={styles.descriptionIcon}
             sx={{
               fontSize:'75px',
             }}/>
           <div className={styles.descriptionWords}>
-            <p>{brandName}</p> 
-            <p>{itemName}</p>
-            <p>{color}</p>
-          </div>   
+            <p>{tag1.brandName}</p> 
+            <p>{tag1.itemName}</p>
+            <p>{tag1.color}</p>
+          </div>
+          <button id="xButton" onClick={cleartag1}>
+            X
+          </button>   
         </Text>
-      )}
+      ) : null }
+      {tag2 && (tag2.brandName) ? (
+        <Text className={styles.tagsContainer}>
+          <ImageIcon className={styles.descriptionIcon}
+            sx={{
+              fontSize:'75px',
+            }}/>
+          <div className={styles.descriptionWords}>
+            <p>{tag2.brandName}</p> 
+            <p>{tag2.itemName}</p>
+            <p>{tag2.color}</p>
+          </div>   
+          <button id="xButton" onClick={cleartag2}>
+            X
+          </button> 
+        </Text>
+      ) : null }
+      {tag3 && (tag3.brandName) ? (
+        <Text className={styles.tagsContainer}>
+          <ImageIcon className={styles.descriptionIcon}
+            sx={{
+              fontSize:'75px',
+            }}/>
+          <div className={styles.descriptionWords}>
+            <p>{tag3.brandName}</p> 
+            <p>{tag3.itemName}</p>
+            <p>{tag3.color}</p>
+          </div>   
+          <button id="xButton" onClick={cleartag3}>
+            X
+          </button> 
+        </Text>
+      ) : null }
       <Text className={styles.tagsContainer}>
       Values <Code>{`{ x: ${Math.round(value.x * 100)}, y: ${Math.round(value.y * 100)} }`}</Code>
       </Text>
