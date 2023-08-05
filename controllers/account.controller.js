@@ -1,4 +1,5 @@
 const Account = require('../models/account.model')
+const UserInfo = require('../models/userInfo.model')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
@@ -31,6 +32,43 @@ const getAccountByID = asyncHandler(async (req, res) => {
         })
 })
 
+// @desc Get an account by Email
+// @route GET /login/email/password
+// @access Private
+const login = asyncHandler(async (req, res) => {
+    const { email, password } = req.params;
+
+    try {
+        const account = await Account.findOne({ accEmail: email });
+
+        //if account exists
+        if (account) {
+            bcrypt.compare(password, account.accPassword, function (err, result) {
+
+                //if password matches
+                if (result) {
+                  return res.status(200).json(account);
+                } 
+                
+                //wrong password
+                else {
+                  return res.status(401).json({ message: err });
+                }
+              });
+        } 
+        
+        //if account not found
+        else {
+            return res.status(404).json({ message: 'Account not found. Please try again' });
+        }
+    } 
+    
+    catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+});
+
 // @desc Create a new account
 // @route POST /createNewAccount
 // @access Private
@@ -51,7 +89,11 @@ const createNewAccount = asyncHandler(async (req, res) => {
     // Create and store new account 
     const account = await Account.create(accountObject)
 
-    if (account) { //created 
+    // If account is created
+    if (account) {
+        // Create new user profile
+        UserInfo.create({"accID": account?._id, })
+
         return res.status(201).json({ message: `New account ${accUsername} created` })
     } else {
         res.status(400).json({ message: 'Invalid account data received' })
@@ -128,7 +170,9 @@ const deleteAccountByID = asyncHandler(async (req, res) => {
 module.exports = {
     getAllAccounts,
     getAccountByID,
+    login,
     createNewAccount,
     updateAccountByID,
-    deleteAccountByID
+    deleteAccountByID,
+    // getCurrentAccount,
 }
