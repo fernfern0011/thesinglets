@@ -182,7 +182,7 @@ export default function TagItem({ onDoneButtonClick }) {
                 </>
                 ) :
                 <>
-                {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag4.brandName !== '' ? (
+                {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag3 === null ? (
                   <>
                   <div
                     id="manual"
@@ -205,7 +205,7 @@ export default function TagItem({ onDoneButtonClick }) {
                 ) : null}
               </>}
 
-                {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag3 !== null ? (
+              {activeTab === 'manual' && storedTag1 !== null && storedTag2 !== null && storedTag3 !== null ? (
                   <>
                   {storedTag3.brandName !== '' ? (
                     <>

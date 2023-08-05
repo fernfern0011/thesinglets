@@ -32,15 +32,16 @@ export default function CreatePost2() {
 
   const theme = useMantineTheme();
   const [value, setValue] = useState({ x: 0.2, y: 0.6 });
-  const { ref, active } = useMove(setValue);
   
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    const x = value.x;
-    const y = value.y;
-    localStorage.setItem('tagPosition', JSON.stringify({ x, y }));
+    if (localStorage.getItem('tag1') && localStorage.getItem('tag2') && localStorage.getItem('tag3') && localStorage.getItem('tag4')) {
+      null
+    } else {
+      setAnchorEl(event.currentTarget);
+      localStorage.setItem('tagPosition', JSON.stringify({ x, y }));
+    }
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -56,6 +57,10 @@ export default function CreatePost2() {
   };
   const cleartag3 = () => {
     localStorage.removeItem('tag3');
+    window.location.reload();
+  };
+  const cleartag4 = () => {
+    localStorage.removeItem('tag4');
     window.location.reload();
   };
 
@@ -107,6 +112,22 @@ export default function CreatePost2() {
         });
       }
   }, []);
+  const [tag4, setTag4] = useState(null);
+  useEffect(() => {
+    // Retrieve the tag data from local storage
+      const storedTag4 = JSON.parse(localStorage.getItem('tag4'));
+      if (storedTag4) {
+        // Set the retrieved tag data in the tag1 state
+        setTag4({
+          brandName: storedTag4.brandName,
+          itemName: storedTag4.itemName,
+          category: storedTag4.category,
+          color: storedTag4.color,
+          xPosition: storedTag4.xPosition,
+          yPosition: storedTag4.yPosition,
+        });
+      }
+  }, []);
 
   return (
     <main className={styles.main}>
@@ -115,7 +136,6 @@ export default function CreatePost2() {
         <div className={styles.progressBarContainer}>
         <Tooltip.Floating color='rgba(255, 0, 0, 0.7)' label='Click to Tag'>
           <Button
-            ref={ref}
             className={styles.buttonOverlay}
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -184,20 +204,6 @@ export default function CreatePost2() {
               alt="Uploaded Image"
               style={{ maxHeight: '300px', maxWidth: '100%' }}
               />
-        <Tooltip color='rgba(255, 0, 0, 0.7)' label={itemName}>
-          <div
-            style={{
-              position: 'absolute',
-              left: `calc(${value.x * 100}% - ${rem(8)})`,
-              top: `calc(${value.y * 100}% - ${rem(8)})`,
-              width: rem(10),
-              height: rem(10),
-              backgroundColor: theme.colors.blue[7],
-              // zIndex: '1',
-            }}
-          />
-        </Tooltip>
-          
             <Menu
               id="basic-menu"
               anchorEl={anchorEl}
@@ -269,9 +275,22 @@ export default function CreatePost2() {
           </button> 
         </Text>
       ) : null }
-      <Text className={styles.tagsContainer}>
-      Values <Code>{`{ x: ${Math.round(value.x * 100)}, y: ${Math.round(value.y * 100)} }`}</Code>
-      </Text>
+      {tag4 && (tag4.brandName) ? (
+        <Text className={styles.tagsContainer}>
+          <ImageIcon className={styles.descriptionIcon}
+            sx={{
+              fontSize:'75px',
+            }}/>
+          <div className={styles.descriptionWords}>
+            <p>{tag4.brandName}</p> 
+            <p>{tag4.itemName}</p>
+            <p>{tag4.color}</p>
+          </div>   
+          <button id="xButton" onClick={cleartag4}>
+            X
+          </button> 
+        </Text>
+      ) : null }
     </div>
   </div>
 
