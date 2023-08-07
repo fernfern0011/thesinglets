@@ -1,17 +1,13 @@
 'use client';
 import React, { useEffect } from 'react';
-import SearchPage from '../search_page/page';
+import SearchPage from '../search_page/page.js';
 import FormDialog from '../../components/login_overlay.js';
-
 import DropdownGender from '../../components/dropdownGender.js';
 import DropdownBrand from '../../components/dropdownBrand.js';
 import DropdownCategory from '../../components/dropdownCategory.js';
 import DropdownColour from '../../components/dropdownColour.js';
 import ProfileDrawer from '../../components/profileDrawer.js';
-
 import styles from '../../styles/landing_page.module.css';
-
-import { useSessionStorage } from '../../sessionChecker.js';
 import PostGridList from '../../components/postGridList';
 
 export default function LandingPage() {
@@ -51,8 +47,8 @@ export default function LandingPage() {
   return (
     <main className={styles.main}>
       <h1 className={`${styles.h1} jetbrains-mono`}>The Singlets</h1>
-      <ProfileDrawer isLoggedIn={sessionLog} onLoginStatusChange={handleLoginStatusChange} />
-      <FormDialog isLoggedIn={sessionLog} onLoginStatusChange={handleLoginStatusChange} />
+      <ProfileDrawer isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange} />
+      <FormDialog isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange} />
       <SearchPage />
       <br></br>
       <div>

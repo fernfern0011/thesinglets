@@ -35,19 +35,19 @@ export default function ProfileDrawer() {
         onClose={close}
         size="25%"
         >
-        <IconButton href="/profile_page">
+        <IconButton href="#">
           <AccountCircleIcon sx={{ fontSize: 75 }}/>
         </IconButton>
         <div className={styles.profile}>
-          <a href="/profile_page">{sessionUsername}</a>
-          <a className={styles.handle} href="/profile_page">@{sessionUsername}</a>
+          <a href="#">Dylanny</a>
+          <a className={styles.handle} href="/profile_page">@dylanny</a>
         </div>
 
         <div className={styles.options}>
           <IconButton disableRipple='true' href="/profile_page">
             <Person2OutlinedIcon sx={{ fontSize: 30 }}/>
           </IconButton>
-          <a href="/profile_page">Profile</a>
+          <a href="#">Profile</a>
           <br></br>
           <IconButton disableRipple='true' href="/create_post_page">
             <ControlPointOutlinedIcon sx={{ fontSize: 30 }}/>
@@ -57,7 +57,7 @@ export default function ProfileDrawer() {
           <IconButton disableRipple='true' href="profilePage">
             <SettingsOutlinedIcon sx={{ fontSize: 30 }}/>
           </IconButton>
-          <a href="profilePage">Settings</a>
+          <a href="#">Settings</a>
         </div>
 
         <Button className={styles.logout} variant="contained" fullWidth='True' onClick={handleLogout}>Logout</Button>

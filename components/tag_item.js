@@ -87,7 +87,6 @@ export default function TagItem({ onDoneButtonClick }) {
                     </div>
                   </>
                 )}
-
                 {/* Content for the Manual tab */}
                 {activeTab === 'manual' && storedTag1 === null ? (
                   <>
@@ -110,7 +109,6 @@ export default function TagItem({ onDoneButtonClick }) {
                     </div>
                   </>
                 ) : null}
-
                 {activeTab === 'manual' && (storedTag1 !== null && storedTag2 === null) ? (
                     <>
                     <div
@@ -230,11 +228,6 @@ export default function TagItem({ onDoneButtonClick }) {
                   ) : null}
                 </>
                 ) : null}
-
-
-
-
-
               </div>
             </main>
           </DialogContentText>

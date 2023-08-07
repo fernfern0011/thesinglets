@@ -18,5 +18,5 @@ const getUserInfo = asyncHandler(async (req, res) => {
 
 
 module.exports = {
-    getUserInfo,  
+    getUserInfo
 }

@@ -4,8 +4,8 @@ import styles from '/styles/components/post.module.css';
 const PostExample1 = () => (
   <div className={styles.post}>
     <br></br>
-    <a href='POST PAGE'>
-        <img className={styles.postImage} src="/images/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
+    <a href='#'>
+      <img className={styles.postImage} src="/images/9ddd4a877e18d4318e8329f6b4b74b7e.jpg" alt="image1 FOR U"></img>
     </a>
     <br></br>
     <img className={styles.upvote} src="/images/upward-arrow-icon-2.jpg" alt="up arrow"></img>
