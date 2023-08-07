@@ -13,7 +13,7 @@ const PostExample1 = () => (
     <img className={styles.downvote} src="/images/upward-arrow-icon-2.jpg" alt="down arrow"></img>
     <p className={styles.voteNumber}>2</p>
     <br></br>
-    <a className={styles.profileLink} href="/profile page">iamlittlefernnnn</a>
+    <a className={styles.profileLink} href="#">iamlittlefernnnn</a>
     <p className={styles.postDescription}>Lorem Ipsum is simply dummy text of the printing</p>
   </div>
 );

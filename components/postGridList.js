@@ -33,7 +33,7 @@ const PostGridList = ({}) => {
           <img className={styles.downvote} src="/images/upward-arrow-icon-2.jpg" alt="down arrow" />
           <p className={styles.voteNumber}>2</p>
           <br />
-          <a className={styles.profileLink} href={`/profile/${item.accID}`}>{item.accID}</a>
+          <a className={styles.profileLink} href={`#`}>{item.accID}</a>
           <p className={styles.postDescription}>{item.description}</p>
           <p className={styles.postHashtag}>{item.hashtag}</p>
           <p className={styles.postItemTag}>{item.itemTag}</p>
