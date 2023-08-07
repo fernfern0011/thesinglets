@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import SearchPage from '/app/search_page/page.js';
 import FormDialog from '/components/login_overlay.js';
 
+
 import DropdownGender from '/components/dropdownGender.js';
 import DropdownBrand from '/components/dropdownBrand.js';
 import DropdownCategory from '/components/dropdownCategory.js';
@@ -14,6 +15,10 @@ import styles from '/styles/landing_page.module.css';
 
 import {useSessionStorage} from '../../sessionChecker';
 import PostGridList from '/components/postGridList';
+import PostExample2 from '@/components/postExample2';
+import PostExample3 from '@/components/postExample3';
+
+
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = React.useState();
