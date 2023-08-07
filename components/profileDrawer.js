@@ -2,6 +2,9 @@
 
 import { useDisclosure } from '@mantine/hooks';
 import { Drawer, Group } from '@mantine/core';
+import { useSessionStorage } from '../sessionChecker';
+import { useState, useEffect } from 'react';
+
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -11,12 +14,16 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 import styles from '/styles/components/profileDrawer.module.css';
 
-export default function ProfileDrawer({ isLoggedIn, onLoginStatusChange }) {
+// export default function ProfileDrawer({ isLoggedIn, onLoginStatusChange }) {
+export default function ProfileDrawer() {
   const [opened, { open, close }] = useDisclosure(false);
-
+  const sessionLog = useSessionStorage();
+  const sessionUsername = typeof window !== 'undefined' ? sessionStorage.getItem('userUsername') : null;
+  console.log(sessionLog)
   const handleLogout = () => {
+    typeof window !== 'undefined' ? sessionStorage.clear() : null;
     // Call the onLoginStatusChange function to update the login status to false
-    onLoginStatusChange(false);
+    // onLoginStatusChange(false);
     close(); // Close the drawer after logout
   };
   
@@ -32,8 +39,8 @@ export default function ProfileDrawer({ isLoggedIn, onLoginStatusChange }) {
           <AccountCircleIcon sx={{ fontSize: 75 }}/>
         </IconButton>
         <div className={styles.profile}>
-          <a href="/profile_page">Dylanny</a>
-          <a className={styles.handle} href="/profile_page">@dylanny</a>
+          <a href="/profile_page">{sessionUsername}</a>
+          <a className={styles.handle} href="/profile_page">@{sessionUsername}</a>
         </div>
 
         <div className={styles.options}>
@@ -57,7 +64,7 @@ export default function ProfileDrawer({ isLoggedIn, onLoginStatusChange }) {
       </Drawer>
 
       <Group position="right">
-        {isLoggedIn ? (
+        {sessionLog ?  (
         <Button
           outline='none'
           className={styles.button}
@@ -65,7 +72,7 @@ export default function ProfileDrawer({ isLoggedIn, onLoginStatusChange }) {
           style={{ textTransform: 'none' }}
         >
           <AccountCircleIcon className={styles.profileButton} sx={{ fontSize: 25 }}/>
-          Dylanny
+          {sessionUsername}
         </Button>
         ) : null}
       </Group>
