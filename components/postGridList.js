@@ -24,8 +24,8 @@ const PostGridList = ({}) => {
       {posts.map((item) => (
         <div className={styles.post} key={item._id}>
           <br />
-          <a href='POST PAGE'>
-          <img className={styles.postImage} src={item.postImage} alt="" />
+          <a href='#'>
+          <img className={styles.postImage} src={'https://placehold.co/100x100'} alt="" />
           </a>
           <br />
           <img className={styles.upvote} src="/images/upward-arrow-icon-2.jpg" alt="up arrow" />
