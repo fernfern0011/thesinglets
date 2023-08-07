@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import SearchPage from '../search_page/page.js';
 import FormDialog from '../../components/login_overlay.js';
-
 import DropdownGender from '../../components/dropdownGender.js';
 import DropdownBrand from '../../components/dropdownBrand.js';
 import DropdownCategory from '../../components/dropdownCategory.js';
@@ -12,10 +11,14 @@ import styles from '../../styles/landing_page.module.css';
 import PostGridList from '../../components/postGridList';
 
 export default function LandingPage() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const handleLoginStatusChange = (status) => {
-    setIsLoggedIn(status);
+  const [isLoggedIn, setIsLoggedIn] = React.useState();
+  const sessionLog = useSessionStorage();
+
+  const handleLoginStatusChange = (sessionLog) => {
+    setIsLoggedIn(sessionLog);
   }
+
+  console.log(isLoggedIn);
 
   useEffect(() => {
     // By default, open the first tab

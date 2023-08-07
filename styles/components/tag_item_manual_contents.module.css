@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=JetBrains+Mono&display=swap');
+
+.main {
+    text-align: center;
+}
+
+.form { 
+    background-color: white; 
+    margin: 0 auto; 
+    height: auto; 
+    width: 250px; 
+    padding: 5px; 
+    font-size: 10px; 
+    text-align: center; 
+} 
+
+.container {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    /* height: 20vh; */
+  }
+
+.profileImage {
+    width: 300px; 
+    height: 150px;
+    object-fit: cover;
+    overflow: hidden;
+    margin-bottom: 13px;
+}
+
+.changePhoto {
+    border: 1px solid black;
+    border-radius: 0;
+    color: black; 
+    text-transform: lowercase; 
+    font-size: 13px;
+    font-family: Inter;
+}
+
+/* landing_page */
+.overlayButton { 
+    position: absolute; 
+    border: transparent; 
+    color: black; 
+    text-transform: capitalize; 
+    top: 7px;
+} 
+ 
+.overlayButton:hover { 
+    border: none;
+    background-color: transparent; 
+} 
+
+.done {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    text-transform: capitalize;
+    font-size: 13px;
+    color: black;
+  }

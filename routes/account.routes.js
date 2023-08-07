@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const accountController = require('../controllers/account.controller')
 
+//GET Account
 router.get('/getAllAccounts', accountController.getAllAccounts)
 router.get('/getAccount/:id', accountController.getAccountByID)
 router.get('/login/:email/:password', accountController.login)

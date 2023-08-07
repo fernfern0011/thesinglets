@@ -93,7 +93,6 @@ function SearchBarTabs() {
         <div id="myCloset" className={`${"tabcontent"}`}>
             <PostExample1 />
         </div>
-
       </main>
     )
 }
