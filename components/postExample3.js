@@ -3,8 +3,8 @@ import styles from '/styles/components/post.module.css';
 
 const PostExample3 = () => (
     <div className={styles.post}>
-    <br></br>
-    <a href='POST PAGE'>
+    <br></br> 
+    <a href='#'>
         <img className={styles.postImage} src="/images/6fee8ba216efcdf25ea6fa3db8d066f1.jpg" alt="image1 FOR U"></img>
     </a>
     <br></br>

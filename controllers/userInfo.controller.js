@@ -33,6 +33,5 @@ const getCurrentUser = asyncHandler(async (req, res) => {
   
 
 module.exports = {
-    getUserInfo,
-    getCurrentUser,
+    getUserInfo
 }

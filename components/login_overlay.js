@@ -52,7 +52,7 @@ export default function FormDialog({ isLoggedIn, onLoginStatusChange }) {
                       Password 
                     </label> 
                     <br /> 
-                    <input className={styles.formInput} type="text" name="password" id="password" /> 
+                    <input className={styles.formInput} type="password" name="password" id="password" /> 
                   </p> 
                 </form> 
  

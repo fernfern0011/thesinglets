@@ -1,22 +1,15 @@
 'use client';
 import React, { useEffect } from 'react';
-import SearchPage from '/app/search_page/page.js';
-import FormDialog from '/components/login_overlay.js';
+import SearchPage from '../search_page/page.js';
+import FormDialog from '../../components/login_overlay.js';
 
-
-import DropdownGender from '/components/dropdownGender.js';
-import DropdownBrand from '/components/dropdownBrand.js';
-import DropdownCategory from '/components/dropdownCategory.js';
-import DropdownColour from '/components/dropdownColour.js';
-import ProfileDrawer from '/components/profileDrawer.js';
-import TagItem from '/components/tag_item.js';
-
-import styles from '/styles/landing_page.module.css';
-import PostGridList from '/components/postGridList';
-import PostExample2 from '@/components/postExample2';
-import PostExample3 from '@/components/postExample3';
-
-
+import DropdownGender from '../../components/dropdownGender.js';
+import DropdownBrand from '../../components/dropdownBrand.js';
+import DropdownCategory from '../../components/dropdownCategory.js';
+import DropdownColour from '../../components/dropdownColour.js';
+import ProfileDrawer from '../../components/profileDrawer.js';
+import styles from '../../styles/landing_page.module.css';
+import PostGridList from '../../components/postGridList';
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -51,24 +44,23 @@ export default function LandingPage() {
   return (
     <main className={styles.main}>
       <h1 className={`${styles.h1} jetbrains-mono`}>The Singlets</h1>
-      <ProfileDrawer isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
-      <FormDialog isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange}/>
+      <ProfileDrawer isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange} />
+      <FormDialog isLoggedIn={isLoggedIn} onLoginStatusChange={handleLoginStatusChange} />
       <SearchPage />
-      {/* <TagItem /> */}
       <br></br>
       <div>
-            <div className={styles.tab}>
-            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'forYou')}>
+        <div className={styles.tab}>
+          <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'forYou')}>
             For You
-            </button>
-            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'following')}>
+          </button>
+          <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'following')}>
             Following
-            </button>
-            <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag')}>
+          </button>
+          <button className={styles.tablinks} onClick={(evt) => openTab(evt, 'hashtag')}>
             Hashtag
-            </button>
+          </button>
         </div>
-        <hr className={styles.horizontalLine}/>
+        <hr className={styles.horizontalLine} />
 
         <div id="forYou" className={`${"tabcontent"}`}>
           <DropdownGender />
@@ -79,26 +71,26 @@ export default function LandingPage() {
           <PostGridList />
         </div>
 
-{/* Following Tab */}
-      <div id="following" className={`${"tabcontent"}`}>
-        <DropdownGender />
+        {/* Following Tab */}
+        <div id="following" className={`${"tabcontent"}`}>
+          <DropdownGender />
           <DropdownBrand />
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-        <PostGridList />
-      </div>
+          <PostGridList />
+        </div>
 
-{/* Hashtag Tab */}
-      <div id="hashtag" className={`${"tabcontent"}`}>
-      <DropdownGender />
+        {/* Hashtag Tab */}
+        <div id="hashtag" className={`${"tabcontent"}`}>
+          <DropdownGender />
           <DropdownBrand />
           <DropdownCategory />
           <DropdownColour />
           <br></br>
-        <PostGridList />
+          <PostGridList />
 
-      </div>
+        </div>
       </div>
 
     </main>
