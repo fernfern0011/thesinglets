@@ -5,14 +5,13 @@ import styles from '/styles/profile_page.module.css';
 import PostExample1 from '/components/postExample1.js';
 import PostExample2 from '/components/postExample2.js';
 import PostExample3 from '/components/postExample3.js';
+import Profile from '/components/profile.js';
 import { useSessionStorage } from '../../sessionChecker';
-import ButtonMUI from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function SearchBarTabs({}) {
   const isLoggedIn = useSessionStorage();
   const [userInfo, setUserInfo] = useState({});
-  const userUsernameFromSession = typeof window !== 'undefined' ? sessionStorage.getItem('userUsername') : null;
 
   useEffect(() => {
     // Fetch user information from the server
@@ -59,14 +58,9 @@ function SearchBarTabs({}) {
           <p className={styles.handle}>@{userInfo.nickname}</p>
           <p>{userInfo.bio}</p>
         </div>
-        <ButtonMUI
-          className={styles.editButton}
-          variant="contained"
-          fullWidth='True'
-          size='small'
-        >
-          Edit Profile
-        </ButtonMUI>
+        <Profile
+          classname={styles.editButton}
+        />
         <div className={styles.following}>
           <p className={styles.following1}>0 Post</p>
           <a className={styles.following1} href="Follower Overlay">0 Follower</a>
