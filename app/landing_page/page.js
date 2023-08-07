@@ -65,7 +65,7 @@ export default function LandingPage() {
       <ProfileDrawer isLoggedIn={sessionLog} onLoginStatusChange={handleLoginStatusChange}/>
       <FormDialog isLoggedIn={sessionLog} onLoginStatusChange={handleLoginStatusChange}/>
       <SearchPage />
-      {/* <TagItem /> */}
+      <TagItem />
       <br></br>
       <div>
             <div className={styles.tab}>
