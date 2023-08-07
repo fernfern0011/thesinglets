@@ -6,29 +6,10 @@ import PostExample1 from '/components/postExample1.js';
 import PostExample2 from '/components/postExample2.js';
 import PostExample3 from '/components/postExample3.js';
 import Profile from '/components/profile.js';
-
-import ButtonMUI from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function SearchBarTabs() {
   const [userInfo, setUserInfo] = useState({});
-
-//   useEffect(() => {
-//     // Fetch user information from the server
-//     const fetchUserInfo = async () => {
-//       try {
-//         const response = await axios.get('http://localhost:3500/api/userinfo/getUserInfo');
-//         console.log('User Info Response:', response.data);
-//         // Assuming the API response is an array, use the first item as userInfo
-//         if (response.data.length > 0) {
-//           setUserInfo(response.data[0]);
-//         }
-//       } catch (error) {
-//         console.error('Error fetching user information:', error);
-//       }
-//     };
-//     fetchUserInfo();
-//   }, []);
 
   useEffect(() => {
         // Fetch currently logged-in user's information from the server
@@ -82,14 +63,6 @@ function SearchBarTabs() {
           <p className={styles.handle}>@{userInfo.accID}</p>
           <p>{userInfo.bio}</p>
         </div>
-        {/* <ButtonMUI
-          className={styles.editButton}
-          variant="contained"
-          fullWidth='True'
-          size='small'
-        >
-          Edit Profile
-        </ButtonMUI> */}
         <Profile
           classname={styles.editButton}
         />

@@ -3,20 +3,15 @@ import React, { useEffect } from 'react';
 import SearchPage from '/app/search_page/page.js';
 import FormDialog from '/components/login_overlay.js';
 
-
 import DropdownGender from '/components/dropdownGender.js';
 import DropdownBrand from '/components/dropdownBrand.js';
 import DropdownCategory from '/components/dropdownCategory.js';
 import DropdownColour from '/components/dropdownColour.js';
 import ProfileDrawer from '/components/profileDrawer.js';
-import TagItem from '/components/tag_item.js';
+// import TagItem from '/components/tag_item.js';
 
 import styles from '/styles/landing_page.module.css';
 import PostGridList from '/components/postGridList';
-import PostExample2 from '@/components/postExample2';
-import PostExample3 from '@/components/postExample3';
-
-
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
